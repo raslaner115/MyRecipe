@@ -6,53 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".Login"
     android:background="@drawable/background">
+
     <EditText
 
         android:id="@+id/fname"
-        android:hint="email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="300dp"
+        android:layout_above="@+id/editTextTextPassword"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/input"
         android:drawableStart="@drawable/email"
         android:drawableLeft="@drawable/email"
         android:ems="10"
+        android:hint="email"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:hint="password"
         android:id="@+id/editTextTextPassword"
         android:layout_width="match_parent"
         android:layout_height="49dp"
+        android:layout_above="@+id/login"
+
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginEnd="0dp"
 
-        android:layout_marginBottom="240dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="54dp"
         android:background="@drawable/input"
         android:drawableStart="@drawable/password"
         android:drawableLeft="@drawable/password"
-
         android:ems="10"
+        android:hint="password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/register"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="135dp"
-        android:layout_marginRight="135dp"
-        android:layout_marginBottom="135dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginRight="134dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/button"
         android:fontFamily="cursive"
         android:text="LOGIN"
@@ -65,9 +62,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="137dp"
-        android:layout_marginRight="137dp"
-        android:layout_marginBottom="67dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
+        android:layout_marginBottom="34dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="register"
@@ -75,35 +72,31 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="306dp"
-        android:layout_height="595dp"
+        android:layout_width="255dp"
+        android:layout_height="348dp"
+        android:layout_above="@+id/fname"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="-18dp"
-        android:layout_marginLeft="-18dp"
-        android:layout_marginTop="-85dp"
-        android:layout_marginEnd="123dp"
-        android:layout_marginRight="123dp"
-        app:srcCompat="@drawable/logo"
-        />
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="-33dp"
+        android:layout_marginBottom="12dp"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="141dp"
         android:layout_height="176dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="457dp"
-        android:text="RECIPE AROUND THE WORLD"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="73dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
         android:fontFamily="cursive"
-        android:textSize="32sp"
         android:gravity="center"
-        />
+        android:text="RECIPE AROUND THE WORLD"
+        android:textSize="32sp" />
 
 </RelativeLayout>
