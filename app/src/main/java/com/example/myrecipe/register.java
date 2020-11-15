@@ -144,7 +144,7 @@ private void SelectAPic() {
         if (data.getData()!=null){
             Toast.makeText(getApplicationContext(),"data.getData()!=null",Toast.LENGTH_SHORT).show();
         }
-        if (requestCode==1&&requestCode==RESULT_OK &&data!=null &&data.getData()!=null){
+        if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             Propic.setImageURI(imageuri);
             uploadpic();
