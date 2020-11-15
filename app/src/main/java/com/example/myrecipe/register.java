@@ -30,7 +30,7 @@ import java.io.File;
 
 public class register extends AppCompatActivity {
     private  ImageView Propic;
-    private  Uri imageurl;
+    public   Uri imageuri;
     private StorageReference mStorageRef;
 
     @Override
@@ -115,7 +115,7 @@ public class register extends AppCompatActivity {
 
         });
     }
-//open galery_______________________________________________________________________________________
+
 
 //check conniction__________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
@@ -123,7 +123,7 @@ public class register extends AppCompatActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
 
-//__________________________________________________________________________________________________
+//open galery_______________________________________________________________________________________
 private void SelectAPic() {
     Intent i=new Intent();
     i.setType("image/*");
@@ -134,8 +134,8 @@ private void SelectAPic() {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1&&requestCode==RESULT_OK &&data!=null &&data.getData()!=null){
-            imageurl=data.getData();
-
+            imageuri=data.getData();
+            Propic.setImageURI(imageuri);
             uploadpic();
         }
     }
@@ -143,18 +143,18 @@ private void SelectAPic() {
     private void uploadpic() {
 
         StorageReference riversRef = mStorageRef.child("images/");
-        riversRef.putFile(imageurl)
+        riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // make a massege int bottom
-                        Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                     Toast.makeText(getApplicationContext(),"faild to upload the pivture",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getApplicationContext(),"fail to upload the picture",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
