@@ -145,7 +145,7 @@ private void SelectAPic() {
 //upload the pic to firebase storage________________________________________________________________
     private void uploadpic(String username) {
 
-        StorageReference riversRef = mStorageRef.child(username);
+        StorageReference riversRef = mStorageRef.child(username).child("profile img");
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
