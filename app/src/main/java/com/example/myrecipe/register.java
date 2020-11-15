@@ -110,7 +110,7 @@ public class register extends AppCompatActivity {
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         myRef.child("email").setValue("wait...");
-                        uploadpic();
+                        uploadpic(username2);
                         startActivity(new Intent(register.this,Login.class));
                     }}}
 
@@ -143,9 +143,9 @@ private void SelectAPic() {
         }
     }
 //upload the pic to firebase storage________________________________________________________________
-    private void uploadpic() {
+    private void uploadpic(String username) {
 
-        StorageReference riversRef = mStorageRef.child("image/");
+        StorageReference riversRef = mStorageRef.child(username);
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
