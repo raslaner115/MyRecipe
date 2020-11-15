@@ -1,21 +1,37 @@
 package com.example.myrecipe;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
 
 public class register extends AppCompatActivity {
+    private  ImageView Propic;
+    private  Uri imageurl;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +43,17 @@ public class register extends AppCompatActivity {
         EditText password=findViewById(R.id.password);
         EditText username=findViewById(R.id.username);
         Button reg=findViewById(R.id.register);
+        Propic=findViewById(R.id.ProPic);
+
 //__________________________________________________________________________________________________
+        Propic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectAPic();
+            }
+        });
+
+//sign in firebase database_________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +79,7 @@ public class register extends AppCompatActivity {
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
+                    mStorageRef = FirebaseStorage.getInstance().getReference();
 //check password____________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -88,11 +115,57 @@ public class register extends AppCompatActivity {
 
         });
     }
+//open galery_______________________________________________________________________________________
+    private void SelectAPic() {
+        Intent i=new Intent();
+        i.setType("image/*");
+        i.setAction(i.ACTION_GET_CONTENT);
+        startActivityForResult(i,1);
+    }
 //check conniction__________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
+
+//__________________________________________________________________________________________________
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&requestCode==RESULT_OK &&data!=null &&data.getData()!=null){
+            imageurl=data.getData();
+
+            uploadpic();
+        }
+    }
+
+    private void uploadpic() {
+
+        StorageReference riversRef = mStorageRef.child("images/");
+        riversRef.putFile(imageurl)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // make a massege int bottom
+                        Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                     Toast.makeText(getApplicationContext(),"faild to upload the pivture",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        double proper =(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                    }
+                });
+    }
+
+
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
 
     public boolean checkarray(char ar1[],char ar2[]){
