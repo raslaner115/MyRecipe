@@ -127,6 +127,7 @@ private void SelectAPic() {
     i.setType("image/*");
     i.setAction(i.ACTION_GET_CONTENT);
     startActivityForResult(i,1);
+    onActivityResult(1,RESULT_OK,i);
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -140,7 +141,7 @@ private void SelectAPic() {
 
     private void uploadpic() {
 
-        StorageReference riversRef = mStorageRef.child("image/jpeg");
+        StorageReference riversRef = mStorageRef.child("image/");
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
