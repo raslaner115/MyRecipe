@@ -3,7 +3,6 @@ package com.example.myrecipe;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -142,12 +140,12 @@ private void SelectAPic() {
 
     private void uploadpic() {
 
-        StorageReference riversRef = mStorageRef.child("images/");
+        StorageReference riversRef = mStorageRef.child("image/jpeg");
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // make a massege int bottom
+                        // make a massage int bottom
                         Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_LONG).show();
                     }
                 })
@@ -173,8 +171,8 @@ private void SelectAPic() {
         for (int i=0;i<ar1.length;i++){
             boolean check = false;
             for (int j=0;j<ar2.length;j++){
-                if (ar1[i]==ar2[j]){
-                    check=true;
+                if (ar1[i] == ar2[j]) {
+                    check = true;
                 }}
             if (!check){
                 return false;
