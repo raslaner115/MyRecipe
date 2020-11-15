@@ -29,6 +29,7 @@ import java.io.File;
 public class register extends AppCompatActivity {
     private  ImageView Propic;
     public   Uri imageuri;
+    private FirebaseStorage storage;
     private StorageReference mStorageRef;
 
     @Override
@@ -77,7 +78,8 @@ public class register extends AppCompatActivity {
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
-                    mStorageRef = FirebaseStorage.getInstance().getReference();
+                    storage = FirebaseStorage.getInstance();
+                    mStorageRef=storage.getReference();
 //check password____________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -108,6 +110,7 @@ public class register extends AppCompatActivity {
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         myRef.child("email").setValue("wait...");
+                        uploadpic();
                         startActivity(new Intent(register.this,Login.class));
                     }}}
 
@@ -129,6 +132,7 @@ private void SelectAPic() {
     startActivityForResult(i,1);
 
 }
+//change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -136,15 +140,9 @@ private void SelectAPic() {
         if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             Propic.setImageURI(imageuri);
-
-            Toast.makeText(getApplicationContext(),"select the picture",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(getApplicationContext(),resultCode,Toast.LENGTH_SHORT).show();
-
         }
     }
-
+//upload the pic to firebase storage________________________________________________________________
     private void uploadpic() {
 
         StorageReference riversRef = mStorageRef.child("image/");
@@ -152,7 +150,7 @@ private void SelectAPic() {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // make a massage int bottom
+                        // make a massage in the bottom
                         Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_LONG).show();
                     }
                 })
