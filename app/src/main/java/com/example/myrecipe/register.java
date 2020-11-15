@@ -127,16 +127,15 @@ private void SelectAPic() {
     i.setType("image/*");
     i.setAction(i.ACTION_GET_CONTENT);
     startActivityForResult(i,1);
-    onActivityResult(1,RESULT_OK,i);
+
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1&&requestCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             Propic.setImageURI(imageuri);
             uploadpic();
-        }
+
     }
 
     private void uploadpic() {
