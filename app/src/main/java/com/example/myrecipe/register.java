@@ -132,10 +132,16 @@ private void SelectAPic() {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&requestCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             Propic.setImageURI(imageuri);
             uploadpic();
+            Toast.makeText(getApplicationContext(),"select the picture",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"fail to select the picture",Toast.LENGTH_SHORT).show();
 
+        }
     }
 
     private void uploadpic() {
