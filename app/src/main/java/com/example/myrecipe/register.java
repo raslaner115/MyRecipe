@@ -116,12 +116,7 @@ public class register extends AppCompatActivity {
         });
     }
 //open galery_______________________________________________________________________________________
-    private void SelectAPic() {
-        Intent i=new Intent();
-        i.setType("image/*");
-        i.setAction(i.ACTION_GET_CONTENT);
-        startActivityForResult(i,1);
-    }
+
 //check conniction__________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -129,7 +124,12 @@ public class register extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
 
 //__________________________________________________________________________________________________
-
+private void SelectAPic() {
+    Intent i=new Intent();
+    i.setType("image/*");
+    i.setAction(i.ACTION_GET_CONTENT);
+    startActivityForResult(i,1);
+}
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
