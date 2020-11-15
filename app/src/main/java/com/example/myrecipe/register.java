@@ -132,18 +132,7 @@ private void SelectAPic() {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1){
-            Toast.makeText(getApplicationContext(),"requestCode==1",Toast.LENGTH_SHORT).show();
-        }
-        if (requestCode==RESULT_OK){
-            Toast.makeText(getApplicationContext(),"requestCode==RESULT_OK",Toast.LENGTH_SHORT).show();
-        }
-        if (data!=null){
-            Toast.makeText(getApplicationContext(),"rdata!=null",Toast.LENGTH_SHORT).show();
-        }
-        if (data.getData()!=null){
-            Toast.makeText(getApplicationContext(),"data.getData()!=null",Toast.LENGTH_SHORT).show();
-        }
+
         if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             Propic.setImageURI(imageuri);
@@ -151,7 +140,7 @@ private void SelectAPic() {
             Toast.makeText(getApplicationContext(),"select the picture",Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(),"faild to select the picture",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),resultCode,Toast.LENGTH_SHORT).show();
 
         }
     }
