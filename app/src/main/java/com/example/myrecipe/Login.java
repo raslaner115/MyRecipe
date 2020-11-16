@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         TextView reg=findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
 
-
+//__________________________________________________________________________________________________
         maths=new FirebaseAuth.AuthStateListener() {
             FirebaseUser Fuser=mAuth.getCurrentUser();
             @Override
@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
 
             }
         };
-
+//__________________________________________________________________________________________________
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +78,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+//__________________________________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,10 +91,8 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
-
     }
-
-
+//__________________________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

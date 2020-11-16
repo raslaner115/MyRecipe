@@ -1,8 +1,5 @@
 package com.example.myrecipe;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -14,9 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -24,18 +31,18 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-
 public class register extends AppCompatActivity {
     private  ImageView Propic;
     public   Uri imageuri;
     private FirebaseStorage storage;
     private StorageReference mStorageRef;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
 //__________________________________________________________________________________________________
         EditText email=findViewById(R.id.email);
         EditText fname=findViewById(R.id.full_name);
@@ -43,6 +50,10 @@ public class register extends AppCompatActivity {
         EditText username=findViewById(R.id.username);
         Button reg=findViewById(R.id.register);
         Propic=findViewById(R.id.ProPic);
+
+        storage = FirebaseStorage.getInstance();
+        mStorageRef=storage.getReference();
+        mAuth = FirebaseAuth.getInstance();
 
 //__________________________________________________________________________________________________
         Propic.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +85,29 @@ public class register extends AppCompatActivity {
                     char[] pass = password2.toCharArray();
                     char[] mail = email2.toCharArray();
 
-                    int y=0;
+
+
+                    mAuth.createUserWithEmailAndPassword(email2, password2)
+                            .addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                    // ...
+                                }
+                            });
+                                    int y=0;
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
-                    storage = FirebaseStorage.getInstance();
-                    mStorageRef=storage.getReference();
 //check password____________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -185,4 +213,4 @@ private void SelectAPic() {
     }
 //__________________________________________________________________________________________________
 
-}
+        }
