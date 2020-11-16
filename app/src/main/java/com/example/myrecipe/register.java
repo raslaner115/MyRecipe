@@ -170,7 +170,6 @@ private void SelectAPic() {
 
 
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
-
     public boolean checkarray(char ar1[],char ar2[]){
 
         for (int i=0;i<ar1.length;i++){

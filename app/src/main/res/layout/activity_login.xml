@@ -9,7 +9,7 @@
 
     <EditText
 
-        android:id="@+id/fname"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/editTextTextPassword"
@@ -82,7 +82,7 @@
         android:id="@+id/imageView"
         android:layout_width="246dp"
         android:layout_height="335dp"
-        android:layout_above="@+id/fname"
+        android:layout_above="@+id/email"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="0dp"
