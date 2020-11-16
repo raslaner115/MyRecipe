@@ -42,7 +42,6 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
 //__________________________________________________________________________________________________
         EditText email=findViewById(R.id.email);
         EditText fname=findViewById(R.id.full_name);
@@ -54,7 +53,6 @@ public class register extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         mStorageRef=storage.getReference();
         mAuth = FirebaseAuth.getInstance();
-
 //__________________________________________________________________________________________________
         Propic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +60,6 @@ public class register extends AppCompatActivity {
                 SelectAPic();
             }
         });
-
 //sign in firebase database_________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,29 +82,10 @@ public class register extends AppCompatActivity {
                     char[] pass = password2.toCharArray();
                     char[] mail = email2.toCharArray();
 
-
-
-                    mAuth.createUserWithEmailAndPassword(email2, password2)
-                            .addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-
-                                    }
-
-                                    // ...
-                                }
-                            });
-                                    int y=0;
+                    int y=0;
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(username2);
+                    DatabaseReference myRef = database.getReference(email2);
 //check password____________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -137,15 +115,29 @@ public class register extends AppCompatActivity {
                     if (y==0){
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
-                        myRef.child("email").setValue("wait...");
-                        uploadpic(username2);
+                        try {
+                            uploadpic(email2);
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "upload picture failed.", Toast.LENGTH_SHORT).show();
+                        }
+                        mAuth.createUserWithEmailAndPassword(email2, password2)
+                                .addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                        } else {
+                                            // If sign in fails, display a message to the user.
+                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                         startActivity(new Intent(register.this,Login.class));
                     }}}
-
         });
     }
-
-
 //check conniction__________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -171,9 +163,9 @@ private void SelectAPic() {
         }
     }
 //upload the pic to firebase storage________________________________________________________________
-    private void uploadpic(String username) {
+    private void uploadpic(String email) {
 
-        StorageReference riversRef = mStorageRef.child(username).child("profile img");
+        StorageReference riversRef = mStorageRef.child(email).child("profile img");
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -195,8 +187,6 @@ private void SelectAPic() {
                     }
                 });
     }
-
-
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
     public boolean checkarray(char ar1[],char ar2[]){
 
@@ -212,5 +202,4 @@ private void SelectAPic() {
         return true;
     }
 //__________________________________________________________________________________________________
-
-        }
+}
