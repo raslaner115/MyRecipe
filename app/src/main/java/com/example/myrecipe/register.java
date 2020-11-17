@@ -87,7 +87,7 @@ public class register extends AppCompatActivity {
                     int count_wrong=0;
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(email2);
+                    DatabaseReference myRef = database.getReference(username2);
 
 //check password___________________________________________________________________________________
 
