@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
 
-                                    Snackbar.make(relativeLayout,"Email or password are wrong", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(relativeLayout,"email or password are wrong", Snackbar.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(Login.this, MainActivity.class));
                                 }
