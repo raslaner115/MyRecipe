@@ -66,16 +66,15 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (emailS.equals(null)){
+                    if (emailS.length()==0){
                         email.setError("email canno't be empty");
                         count++;
                     }
 
-                    if (passwordS.equals(null)){
+                    if (passwordS.length()==0){
                         password.setError("email canno't be empty");
                         count++;
                     }
-
                     if (count==0){
                         mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -90,7 +89,8 @@ public class Login extends AppCompatActivity {
                             }
 
                         });
-                }}
+                    }
+           }
             }
         });
 
