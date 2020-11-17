@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +34,7 @@ public class Login extends AppCompatActivity {
 
         EditText email=findViewById(R.id.email);
         EditText password=findViewById(R.id.editTextTextPassword);
-
+        RelativeLayout relativeLayout=findViewById(R.id.relativelayout);;
         Button login=findViewById(R.id.login);
         TextView reg=findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
@@ -56,6 +58,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int count=0;
                 String emailS=email.getText().toString();
                 String passwordS=password.getText().toString();
 
@@ -63,27 +66,31 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (emailS.equals(null)){
-                        email.setError("email can't be empty");
+                    if (email==null){
+                        email.setError("email canno't be empty");
+                        count++;
                     }
-                    if (passwordS.equals(null)){
-                        password.setError("password can't be empty");
+
+                    if (password==null){
+                        password.setError("email canno't be empty");
+                        count++;
                     }
-                    else if(!(email.getError().equals("email can't be empty")||password.getError().equals("password can't be empty"))) {
+
+                    if (count==0){
                         mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "error ", Toast.LENGTH_LONG).show();
+
+                                    Snackbar.make(relativeLayout,"Email or password are wrong", Snackbar.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(Login.this, MainActivity.class));
                                 }
                             }
 
                         });
-                    }
-                }
+                }}
             }
         });
 

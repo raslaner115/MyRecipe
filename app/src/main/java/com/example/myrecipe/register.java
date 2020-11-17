@@ -86,20 +86,16 @@ public class register extends AppCompatActivity {
 
                     int count_wrong=0;
 //connect to the firebase___________________________________________________________________________
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                      FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
-
 //check password___________________________________________________________________________________
-
                     if (password2.length()<8){
                         password.setError("invaild password");
                         count_wrong++;}
                     else if(!checkarray(pass,passwordC)){
                         password.setError("invaild leatter");
                         count_wrong++;}
-
 //check name________________________________________________________________________________________
-
                     if(fname2.length()<6){
                         fname.setError("invield name");
                         count_wrong++;
@@ -108,9 +104,7 @@ public class register extends AppCompatActivity {
                         fname.setError("invaild leatter");
                         count_wrong++;
                     }
-
 //check username____________________________________________________________________________________
-
                     if(username2.length()<6){
                         username.setError("invield name");
                         count_wrong++;
@@ -119,14 +113,11 @@ public class register extends AppCompatActivity {
                         username.setError("invield letter");
                         count_wrong++;
                     }
-
 //check username____________________________________________________________________________________
-//
-//                        if (!isValidEmail(email2)){
-//                            email.setError("invield email");
-//                            count_wrong++;
-//                        }
-//
+                    if (!isValidEmail(email2)){
+                        email.setError("invield email");
+                          count_wrong++;
+                      }
 ////check if there some thing wrong___________________________________________________________________
                     if (count_wrong==0){
                         myRef.child("full name").setValue(fname2);
@@ -140,11 +131,6 @@ public class register extends AppCompatActivity {
                                             FirebaseUser user = mAuth.getCurrentUser();
                                             Toast.makeText(getApplicationContext(), "register success.", Toast.LENGTH_SHORT).show();
                                         }
-                                        else  if (mAuth.isSignInWithEmailLink(email2)){
-                                            Toast.makeText(getApplicationContext(), "email is already created", Toast.LENGTH_SHORT).show();
-
-                                        }
-
                                         else {
                                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                         }
