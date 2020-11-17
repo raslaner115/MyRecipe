@@ -139,8 +139,13 @@ public class register extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             FirebaseUser user = mAuth.getCurrentUser();
                                             Toast.makeText(getApplicationContext(), "register success.", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else  if (mAuth.isSignInWithEmailLink(email2)){
+                                            Toast.makeText(getApplicationContext(), "email is already created", Toast.LENGTH_SHORT).show();
 
-                                        } else {
+                                        }
+
+                                        else {
                                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
