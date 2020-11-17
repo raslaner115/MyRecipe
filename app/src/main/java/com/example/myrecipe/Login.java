@@ -63,16 +63,17 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (emailS==null){
+                    if (emailS.equals(null)){
                         email.setError("email can't be empty");
                     }
-                    else if (passwordS==null){
-                        email.setError("password can't be empty");
+                    if (passwordS.equals(null)){
+                        password.setError("password can't be empty");
                     }
-                    else {
+                    else if(!(email.getError().equals("email can't be empty")||password.getError().equals("password can't be empty"))) {
                         mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "error ", Toast.LENGTH_LONG).show();
                                 } else {

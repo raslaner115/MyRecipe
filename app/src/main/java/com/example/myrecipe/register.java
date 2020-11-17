@@ -121,14 +121,13 @@ public class register extends AppCompatActivity {
                     }
 
 //check username____________________________________________________________________________________
-
-                    if (!isValidEmail(email2)){
-                        email.setError("invield email");
-                        count_wrong++;
-                    }
-
-//check if there some thing wrong___________________________________________________________________
-
+//
+//                        if (!isValidEmail(email2)){
+//                            email.setError("invield email");
+//                            count_wrong++;
+//                        }
+//
+////check if there some thing wrong___________________________________________________________________
                     if (count_wrong==0){
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
@@ -139,16 +138,8 @@ public class register extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
                                             FirebaseUser user = mAuth.getCurrentUser();
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                        mAuth.createUserWithEmailAndPassword( username2, password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Toast.makeText(getApplicationContext(), "register success.", Toast.LENGTH_SHORT).show();
+
                                         } else {
                                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                         }
