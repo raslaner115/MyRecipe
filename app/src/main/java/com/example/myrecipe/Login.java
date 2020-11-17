@@ -63,17 +63,25 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    mAuth.signInWithEmailAndPassword(emailS,passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),"error ", Toast.LENGTH_LONG).show();
+                    if (emailS==null){
+                        email.setError("email can't be empty");
+                    }
+                    else if (passwordS==null){
+                        email.setError("password can't be empty");
+                    }
+                    else {
+                        mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (!task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "error ", Toast.LENGTH_LONG).show();
+                                } else {
+                                    startActivity(new Intent(Login.this, MainActivity.class));
+                                }
                             }
-                            else {
-                                startActivity(new Intent(Login.this, MainActivity.class));
-                            }
-                        }
-                    });
+
+                        });
+                    }
                 }
             }
         });

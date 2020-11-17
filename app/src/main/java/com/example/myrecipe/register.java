@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,67 +84,86 @@ public class register extends AppCompatActivity {
                     char[] pass = password2.toCharArray();
                     char[] mail = email2.toCharArray();
 
-                    int y=0;
+                    int count_wrong=0;
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(email2);
-//check password____________________________________________________________________________________
+
+//check password___________________________________________________________________________________
+
                     if (password2.length()<8){
                         password.setError("invaild password");
-                        y++;}
+                        count_wrong++;}
                     else if(!checkarray(pass,passwordC)){
                         password.setError("invaild leatter");
-                        y++;}
+                        count_wrong++;}
+
 //check name________________________________________________________________________________________
+
                     if(fname2.length()<6){
                         fname.setError("invield name");
-                        y++;
+                        count_wrong++;
                     }
                     else if(!checkarray(name,alphabet)){
                         fname.setError("invaild leatter");
-                        y++;
+                        count_wrong++;
                     }
+
 //check username____________________________________________________________________________________
+
                     if(username2.length()<6){
                         username.setError("invield name");
-                        y++;
+                        count_wrong++;
                     }
                     else  if (!checkarray(user,userc)){
                         username.setError("invield letter");
-                        y++;
+                        count_wrong++;
                     }
+
+//check username____________________________________________________________________________________
+
+                    if (!isValidEmail(email2)){
+                        email.setError("invield email");
+                        count_wrong++;
+                    }
+
 //check if there some thing wrong___________________________________________________________________
-                    if (y==0){
+
+                    if (count_wrong==0){
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
-                        try {
-                            uploadpic(email2);
-                        }
-                        catch (Exception e){
-                            Toast.makeText(getApplicationContext(), "upload picture failed.", Toast.LENGTH_SHORT).show();
-                        }
-                        mAuth.createUserWithEmailAndPassword(email2, password2)
-                                .addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
+                        uploadpic(username2);
+                        ////////////////////////////////////////////////////////////////////////////
+                        mAuth.createUserWithEmailAndPassword(email2 , password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            // Sign in success, update UI with the signed-in user's information
                                             FirebaseUser user = mAuth.getCurrentUser();
                                         } else {
-                                            // If sign in fails, display a message to the user.
+                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                        mAuth.createUserWithEmailAndPassword( username2, password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                        } else {
                                             Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
                         startActivity(new Intent(register.this,Login.class));
                     }}}
-        });
-    }
+        });}
+
 //check conniction__________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
+
 
 //open galery_______________________________________________________________________________________
 private void SelectAPic() {
@@ -152,6 +173,8 @@ private void SelectAPic() {
     startActivityForResult(i,1);
 
 }
+
+
 //change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -162,10 +185,12 @@ private void SelectAPic() {
             Propic.setImageURI(imageuri);
         }
     }
-//upload the pic to firebase storage________________________________________________________________
-    private void uploadpic(String email) {
 
-        StorageReference riversRef = mStorageRef.child(email).child("profile img");
+
+//upload the pic to firebase storage________________________________________________________________
+    private void uploadpic(String username) {
+
+        StorageReference riversRef = mStorageRef.child(username).child("profile img");
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -187,6 +212,8 @@ private void SelectAPic() {
                     }
                 });
     }
+
+
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
     public boolean checkarray(char ar1[],char ar2[]){
 
@@ -201,5 +228,10 @@ private void SelectAPic() {
             }}
         return true;
     }
-//__________________________________________________________________________________________________
+
+
+//helper function check email_______________________________________________________________________
+public static boolean isValidEmail(CharSequence target) {
+    return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+}
 }
