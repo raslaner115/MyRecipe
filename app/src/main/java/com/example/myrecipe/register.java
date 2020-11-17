@@ -133,7 +133,7 @@ public class register extends AppCompatActivity {
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         uploadpic(username2);
-                        ////////////////////////////////////////////////////////////////////////////
+
                         mAuth.createUserWithEmailAndPassword(email2 , password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
