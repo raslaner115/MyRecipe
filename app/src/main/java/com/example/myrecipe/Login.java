@@ -66,12 +66,12 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (email==null){
+                    if (emailS.equals(null)){
                         email.setError("email canno't be empty");
                         count++;
                     }
 
-                    if (password==null){
+                    if (passwordS.equals(null)){
                         password.setError("email canno't be empty");
                         count++;
                     }
