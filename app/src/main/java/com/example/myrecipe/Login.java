@@ -63,16 +63,16 @@ public class Login extends AppCompatActivity {
                 String passwordS=password.getText().toString();
 
                 if(!isConnected(this)) {
-                    Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"there is no internet connection ", Toast.LENGTH_LONG).show();
                 }
                 else {
                     if (emailS.length()==0){
-                        email.setError("email canno't be empty");
+                        email.setError("email cannot be empty");
                         count++;
                     }
 
                     if (passwordS.length()==0){
-                        password.setError("email canno't be empty");
+                        password.setError("email cannot be empty");
                         count++;
                     }
                     if (count==0){
