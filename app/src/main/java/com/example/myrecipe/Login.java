@@ -21,10 +21,17 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener maths;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +45,7 @@ public class Login extends AppCompatActivity {
         Button login=findViewById(R.id.login);
         TextView reg=findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
-
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(email.getText().toString());
 //__________________________________________________________________________________________________
         maths=new FirebaseAuth.AuthStateListener() {
             FirebaseUser Fuser=mAuth.getCurrentUser();
@@ -78,11 +85,13 @@ public class Login extends AppCompatActivity {
                     if (count==0){
                         if (emailS.equals("admin") && passwordS.equals("R")){
                             Snackbar.make(relativeLayout,"hello raslan yasen", Snackbar.LENGTH_SHORT).show();
-                            startActivity(new Intent(Login.this, MainActivity.class));
+
+                            Intent intent=new Intent(Login.this, profile.class);
+                            intent.putExtra("email",emailS);
+                            startActivity(intent);
 
                         }
                         else{
-
 
                         mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -90,12 +99,42 @@ public class Login extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
 
+                                    Query checkUser =reference.orderByChild("username").equalTo(emailS);
+                                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists()) {
+                                                String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                                if (passwordFromDB.equals(passwordS)) {
+                                                    Intent intent=new Intent(Login.this, profile.class);
+                                                    String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
+                                                    intent.putExtra("username",emailS);
+                                                    intent.putExtra("name",nameFromDB);
+                                                    startActivity(intent);
+                                                }
+                                                else {
+                                                    password.setError("Wrong Password");
+                                                    password.requestFocus();
+                                                }
+                                            }
+                                            email.setError("No such User exist");
+                                            email.requestFocus();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            email.setError("No such User exist");
+                                            email.requestFocus();
+                                        }
+                                    });
+
                                     Snackbar.make(relativeLayout,"email or password are wrong", Snackbar.LENGTH_SHORT).show();
                                 } else {
+                                    startActivity(new Intent(Login.this, profile.class));
                                     Intent intent=new Intent(Login.this, profile.class);
+                                    intent.putExtra("name","nameFromDB");
                                     intent.putExtra("email",emailS);
                                     startActivity(intent);
-
 
                                 }
                             }

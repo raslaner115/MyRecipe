@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile"
-    android:background="@drawable/background">
-
+>
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="147dp"
@@ -42,6 +41,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="11dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_toStartOf="@+id/username2"
+        android:layout_toLeftOf="@+id/username2"
         android:text="UserName:"
         android:textSize="25dp" />
 
@@ -82,13 +85,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="401dp"
-        android:layout_toEndOf="@+id/username"
-        android:layout_toRightOf="@+id/username"
         android:text=" "
         android:textSize="25dp" />
 
