@@ -123,11 +123,12 @@ public class Login extends AppCompatActivity {
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) {
-                                            System.out.println("hello Raslan");
+                                            email.setError("No such User exist");
+                                            email.requestFocus();
                                         }
                                     });
 
-
+                                    Snackbar.make(relativeLayout,"email or password are wrong", Snackbar.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(Login.this, profile.class));
                                     Intent intent=new Intent(Login.this, profile.class);
