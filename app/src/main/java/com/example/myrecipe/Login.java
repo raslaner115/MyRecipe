@@ -15,7 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -88,8 +91,9 @@ public class Login extends AppCompatActivity {
                             intent.putExtra("name","raslan");
                             intent.putExtra("username","admin");
                             startActivity(intent);
+
                         }
-                    else{
+                        else {
                             Query checkUser = reference.orderByChild("username").equalTo(emailS);
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -99,7 +103,6 @@ public class Login extends AppCompatActivity {
                                     String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
                                     String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
                                     if (dataSnapshot.exists()) {
-
                                         if (passwordFromDB.equals(passwordS)) {
                                             Intent intent = new Intent(Login.this, profile.class);
                                             intent.putExtra("username", emailFromDB);
@@ -111,28 +114,38 @@ public class Login extends AppCompatActivity {
                                             password.requestFocus();
                                         }
                                     }
-                                    else if (emailFromDB.equals(emailS)) {
-                                        if (passwordFromDB.equals(passwordS)) {
-                                            Intent intent = new Intent(Login.this, profile.class);
-                                            intent.putExtra("username", emailFromDB);
-                                            intent.putExtra("name", nameFromDB);
-                                            intent.putExtra("email", usernameFromDB);
-                                            startActivity(intent);
+                                    else {
+                                        mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                        }
-                                    }
-                                    else{
-                                        email.setError("No such User exist");
-                                        email.requestFocus();
+                                                if (task.isSuccessful()) {
+
+                                                    startActivity(new Intent(Login.this, profile.class));
+                                                    Intent intent = new Intent(Login.this, profile.class);
+                                                    intent.putExtra("email", emailS);
+                                                    intent.putExtra("name", nameFromDB);
+                                                    intent.putExtra("username", usernameFromDB);
+                                                    startActivity(intent);
+                                                }
+                                                else {
+                                                    email.setError("No such User exist");
+                                                    email.requestFocus();
+                                                }
+                                            }
+
+                                        });
+
                                     }}
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                 }
                             });
-                        }
-                    }
-                }}});
+
+
+                        }}}}
+        });
 
 //__________________________________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
