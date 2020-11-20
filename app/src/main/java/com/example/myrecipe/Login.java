@@ -116,13 +116,14 @@ public class Login extends AppCompatActivity {
                                                 if (dataSnapshot.exists()) {
                                                     String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
                                                     String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
                                                     String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, profile.class);
-                                                        intent.putExtra("username", emailS);
+                                                        intent.putExtra("username", emailFromDB);
                                                         intent.putExtra("name", nameFromDB);
-                                                        intent.putExtra("username",usernameFromDB);
+                                                        intent.putExtra("email",usernameFromDB);
                                                         startActivity(intent);
                                                     } else {
                                                         password.setError("Wrong Password");
