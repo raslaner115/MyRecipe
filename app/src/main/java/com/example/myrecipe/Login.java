@@ -87,60 +87,66 @@ public class Login extends AppCompatActivity {
                             Snackbar.make(relativeLayout,"hello raslan yasen", Snackbar.LENGTH_SHORT).show();
 
                             Intent intent=new Intent(Login.this, profile.class);
-                            intent.putExtra("email",emailS);
+                            intent.putExtra("email","admin@admin.admin");
+                            intent.putExtra("name","raslan");
+                            intent.putExtra("username","admin");
                             startActivity(intent);
 
                         }
-                        else{
+                        else {
 
-                        mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                            mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                if (!task.isSuccessful()) {
+                                    if (task.isSuccessful()) {
 
-                                    Query checkUser =reference.orderByChild("username").equalTo(emailS);
-                                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if (dataSnapshot.exists()) {
-                                                String passwordFromDB = dataSnapshot.child("password").child(passwordS).getValue(String.class);
-                                                if (passwordFromDB.equals(passwordS)) {
-                                                    Intent intent=new Intent(Login.this, profile.class);
+                                        startActivity(new Intent(Login.this, profile.class));
+                                        Intent intent = new Intent(Login.this, profile.class);
+                                        intent.putExtra("email",emailS);
+                                        intent.putExtra("name","raslan");
+                                        intent.putExtra("username","admin");
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        Query checkUser = reference.orderByChild("username").equalTo(emailS);
+                                        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.exists()) {
                                                     String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
-                                                    intent.putExtra("username",emailS);
-                                                    intent.putExtra("name",nameFromDB);
-                                                    startActivity(intent);
+                                                    String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                                    String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
+
+                                                    if (passwordFromDB.equals(passwordS)) {
+                                                        Intent intent = new Intent(Login.this, profile.class);
+                                                        intent.putExtra("username", emailS);
+                                                        intent.putExtra("name", nameFromDB);
+                                                        intent.putExtra("username",usernameFromDB);
+                                                        startActivity(intent);
+                                                    } else {
+                                                        password.setError("Wrong Password");
+                                                        password.requestFocus();
+                                                    }
                                                 }
-                                                else {
-                                                    password.setError("Wrong Password");
-                                                    password.requestFocus();
-                                                }
+                                                email.setError("No such User exist");
+                                                email.requestFocus();
                                             }
-                                            email.setError("No such User exist");
-                                            email.requestFocus();
-                                        }
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-                                        }
-                                    });
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                            }
+                                        });
 
-                                    Snackbar.make(relativeLayout,"email or password are wrong", Snackbar.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(Login.this, profile.class));
-                                    Intent intent=new Intent(Login.this, profile.class);
-                                    intent.putExtra("name","nameFromDB");
-                                    intent.putExtra("email",emailS);
-                                    startActivity(intent);
+
+                                    }
+
+                                    Snackbar.make(relativeLayout, "email or password are wrong", Snackbar.LENGTH_SHORT).show();
 
                                 }
-                            }
 
-                        });
-                    }}
-           }
-            }
+                            });
+                        }}}}
         });
 
 //__________________________________________________________________________________________________
