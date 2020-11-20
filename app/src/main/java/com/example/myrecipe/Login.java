@@ -116,7 +116,8 @@ public class Login extends AppCompatActivity {
                                                 if (dataSnapshot.exists()) {
                                                     String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
                                                     String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
-                                                    String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(emailS).child("email"
+                                                    ).getValue(String.class);
                                                     String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
@@ -130,20 +131,16 @@ public class Login extends AppCompatActivity {
                                                         password.requestFocus();
                                                     }
                                                 }
+                                                else {
                                                 email.setError("No such User exist");
                                                 email.requestFocus();
-                                            }
+                                            }}
 
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
                                             }
                                         });
-
-
                                     }
-
-                                    Snackbar.make(relativeLayout, "email or password are wrong", Snackbar.LENGTH_SHORT).show();
-
                                 }
 
                             });
