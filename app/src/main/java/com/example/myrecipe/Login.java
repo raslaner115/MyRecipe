@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
 
-                                    Query checkUser =reference.orderByChild("username").equalTo(emailS);
+                                    Query checkUser =reference.orderByChild(emailS).equalTo(emailS);
                                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
