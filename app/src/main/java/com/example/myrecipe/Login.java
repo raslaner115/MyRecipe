@@ -104,7 +104,7 @@ public class Login extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
-                                                String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                                String passwordFromDB = dataSnapshot.child("password").child(passwordS).getValue(String.class);
                                                 if (passwordFromDB.equals(passwordS)) {
                                                     Intent intent=new Intent(Login.this, profile.class);
                                                     String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
@@ -123,8 +123,6 @@ public class Login extends AppCompatActivity {
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) {
-                                            email.setError("No such User exist");
-                                            email.requestFocus();
                                         }
                                     });
 
