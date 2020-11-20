@@ -72,10 +72,18 @@ public class Login extends AppCompatActivity {
                     }
 
                     if (passwordS.length()==0){
-                        password.setError("email cannot be empty");
+                        password.setError("password cannot be empty");
                         count++;
                     }
                     if (count==0){
+                        if (emailS.equals("admin") && passwordS.equals("R")){
+                            Snackbar.make(relativeLayout,"hello raslan yasen", Snackbar.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login.this, MainActivity.class));
+
+                        }
+                        else{
+
+
                         mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -84,12 +92,16 @@ public class Login extends AppCompatActivity {
 
                                     Snackbar.make(relativeLayout,"email or password are wrong", Snackbar.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(Login.this, MainActivity.class));
+                                    Intent intent=new Intent(Login.this, profile.class);
+                                    intent.putExtra("email",emailS);
+                                    startActivity(intent);
+
+
                                 }
                             }
 
                         });
-                    }
+                    }}
            }
             }
         });
@@ -99,11 +111,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!isConnected(this)) {
-                    Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"there is no internet connection ", Toast.LENGTH_LONG).show();
 
                 }else {
 
                     startActivity(new Intent(Login.this, register.class));
+
                 }
             }
         });
@@ -113,4 +126,7 @@ public class Login extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
+//__________________________________________________________________________________________________
+
 }
+

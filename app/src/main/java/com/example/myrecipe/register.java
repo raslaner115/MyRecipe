@@ -119,6 +119,10 @@ public class register extends AppCompatActivity {
                           count_wrong++;
                       }
 ////check if there some thing wrong___________________________________________________________________
+
+
+
+
                     if (count_wrong==0){
                         myRef.child("full name").setValue(fname2);
                         myRef.child("password").setValue(password2);
@@ -168,8 +172,8 @@ private void SelectAPic() {
         }
     }
 
-
 //upload the pic to firebase storage________________________________________________________________
+
     private void uploadpic(String username) {
 
         StorageReference riversRef = mStorageRef.child(username).child("profile img");
@@ -197,6 +201,7 @@ private void SelectAPic() {
 
 
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
+
     public boolean checkarray(char ar1[],char ar2[]){
 
         for (int i=0;i<ar1.length;i++){
@@ -211,9 +216,9 @@ private void SelectAPic() {
         return true;
     }
 
-
 //helper function check email_______________________________________________________________________
-public static boolean isValidEmail(CharSequence target) {
+
+    public static boolean isValidEmail(CharSequence target) {
     return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
 }
 }
