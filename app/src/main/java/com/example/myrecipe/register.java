@@ -227,9 +227,11 @@ private void SelectAPic() {
 //__________________________________________________________________________________________________
     public String DotToPlus(StringBuilder email){
 
+        String Semail=email.toString();
+        char[] CSemail=Semail.toCharArray();
 
-        for (int i=0;i<email.length();i++){
-            if (email.equals('.')){
+        for (int i=0;i<CSemail.length;i++){
+            if (CSemail[i]=='.'){
                 email.setCharAt(i,'+');
             }
         }
