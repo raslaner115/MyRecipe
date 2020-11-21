@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            Query checkUser = (reference.orderByChild("username").equalTo(emailS));
+                            Query checkUser = reference.orderByChild("username").equalTo(email.toString());
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,9 +98,9 @@ public class Login extends AppCompatActivity {
 
                                         if (passwordFromDB.equals(passwordS)) {
                                             Intent intent = new Intent(Login.this, profile.class);
-                                            intent.putExtra("Eusername", emailFromDB);
-                                            intent.putExtra("Ename", nameFromDB);
-                                            intent.putExtra("Eemail",PlusToDot(new StringBuilder(emailFromDB)));
+                                            intent.putExtra("username", emailFromDB);
+                                            intent.putExtra("name", nameFromDB);
+                                            intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
                                             startActivity(intent);
                                         } else {
                                             password.setError("Wrong Password");
@@ -123,14 +123,14 @@ public class Login extends AppCompatActivity {
                                                         intent.putExtra("name", nameFromDB);
                                                         intent.putExtra("email",usernameFromDB);
                                                         startActivity(intent);
-                                                    } else {
-                                                        password.setError("Wrong Password");
-                                                        password.requestFocus();
                                                     }
+                                                    else {
+                                                        password.setError("wrong password");
+                                                    }
+
                                                 }
                                                 else {
-                                                    email.setError("No such User exist");
-                                                    email.requestFocus();
+                                                    email.setError("no such user exist v2");
                                                 }
                                             }
                                             @Override
