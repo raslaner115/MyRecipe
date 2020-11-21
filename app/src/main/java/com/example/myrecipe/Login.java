@@ -102,7 +102,7 @@ public class Login extends AppCompatActivity {
                                             Intent intent = new Intent(Login.this, profile.class);
                                             intent.putExtra("username", emailFromDB);
                                             intent.putExtra("name", nameFromDB);
-                                            intent.putExtra("email",usernameFromDB);
+                                            intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
                                             startActivity(intent);
                                         } else {
                                             password.setError("Wrong Password");
