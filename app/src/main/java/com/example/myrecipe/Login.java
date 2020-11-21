@@ -110,7 +110,7 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(PlusToDot(new StringBuilder(emailS)));
+                                        Query checkmail = reference.orderByChild("email").equalTo(DotToPlus(new StringBuilder(emailS)));
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -180,4 +180,17 @@ public String PlusToDot(StringBuilder email){
     }
     return email.toString();
 }
+
+    public String DotToPlus(StringBuilder email){
+
+        String Semail=email.toString();
+        char[] CSemail=Semail.toCharArray();
+
+        for (int i=0;i<CSemail.length;i++){
+            if (CSemail[i]=='.'){
+                email.setCharAt(i,'+');
+            }
+        }
+        return email.toString();
+    }
 }
