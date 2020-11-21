@@ -88,6 +88,7 @@ public class register extends AppCompatActivity {
 //connect to the firebase___________________________________________________________________________
                       FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
+                    DatabaseReference myRefE = database.getReference(DotToPlus(email2));
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -129,6 +130,12 @@ public class register extends AppCompatActivity {
                         myRef.child("email").setValue(email2);
                         myRef.child("username").setValue(username2);
                         uploadpic(username2);
+
+                        myRefE.child("name").setValue(fname2);
+                        myRefE.child("password").setValue(password2);
+                        myRefE.child("email").setValue(DotToPlus(email2));
+                        myRefE.child("username").setValue(username2);
+                        uploadpic(DotToPlus(email2));
 
                         mAuth.createUserWithEmailAndPassword(email2 , password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -223,4 +230,15 @@ private void SelectAPic() {
     public static boolean isValidEmail(CharSequence target) {
     return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
 }
+//__________________________________________________________________________________________________
+    public String DotToPlus(String email){
+        char[] emailT=email.toCharArray();
+
+        for (int i=0;i<emailT.length;i++){
+            if (emailT[i]=='.'){
+                emailT[i]='+';
+            }
+        }
+        return emailT.toString();
+    }
 }

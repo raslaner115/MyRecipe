@@ -15,10 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -84,8 +80,6 @@ public class Login extends AppCompatActivity {
                     }
                     if (count==0){
                         if (emailS.equals("admin") && passwordS.equals("R")){
-                            Snackbar.make(relativeLayout,"hello raslan yasen", Snackbar.LENGTH_SHORT).show();
-
                             Intent intent=new Intent(Login.this, profile.class);
                             intent.putExtra("email","admin@admin.admin");
                             intent.putExtra("name","raslan");
@@ -98,11 +92,12 @@ public class Login extends AppCompatActivity {
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
-                                    String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
-                                    String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
-                                    String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
                                     if (dataSnapshot.exists()) {
+                                        String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
+                                        String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                        String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
+                                        String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
+
                                         if (passwordFromDB.equals(passwordS)) {
                                             Intent intent = new Intent(Login.this, profile.class);
                                             intent.putExtra("username", emailFromDB);
@@ -115,37 +110,43 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        mAuth.signInWithEmailAndPassword(emailS, passwordS).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                        Query checkmail = reference.orderByChild("email").equalTo(PlusToDot(emailS));
+                                        checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (dataSnapshot.exists()) {
+                                                    String nameFromDB = dataSnapshot.child(PlusToDot(emailS)).child("name").getValue(String.class);
+                                                    String passwordFromDB = dataSnapshot.child(PlusToDot(emailS)).child("password").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(PlusToDot(emailS)).child("email").getValue(String.class);
+                                                    String usernameFromDB = dataSnapshot.child(PlusToDot(emailS)).child("username").getValue(String.class);
 
-                                                if (task.isSuccessful()) {
-
-                                                    startActivity(new Intent(Login.this, profile.class));
-                                                    Intent intent = new Intent(Login.this, profile.class);
-                                                    intent.putExtra("email", emailS);
-                                                    intent.putExtra("name", nameFromDB);
-                                                    intent.putExtra("username", usernameFromDB);
-                                                    startActivity(intent);
+                                                    if (passwordFromDB.equals(passwordS)) {
+                                                        Intent intent = new Intent(Login.this, profile.class);
+                                                        intent.putExtra("username", PlusToDot(emailFromDB));
+                                                        intent.putExtra("name", nameFromDB);
+                                                        intent.putExtra("email",usernameFromDB);
+                                                        startActivity(intent);
+                                                    } else {
+                                                        password.setError("Wrong Password");
+                                                        password.requestFocus();
+                                                    }
                                                 }
                                                 else {
                                                     email.setError("No such User exist");
                                                     email.requestFocus();
                                                 }
                                             }
-
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                            }
                                         });
-
-                                    }}
-
+                                    }
+                                }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                 }
                             });
-
-
-                        }}}}
-        });
+                        }}}}});
 
 //__________________________________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
@@ -162,12 +163,20 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-//__________________________________________________________________________________________________
+    //__________________________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
 //__________________________________________________________________________________________________
+public String PlusToDot(String email){
+    char[] emailT=email.toCharArray();
 
+    for (int i=0;i<emailT.length;i++){
+        if (emailT[i]=='+'){
+            emailT[i]='.';
+        }
+    }
+    return emailT.toString();
 }
-
+}
