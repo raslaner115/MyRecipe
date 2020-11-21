@@ -115,7 +115,7 @@ public class register extends AppCompatActivity {
                         email.setError("invield email");
                           count_wrong++;
                       }
-////check if there some thing wrong___________________________________________________________________
+////check if there some thing wrong_________________________________________________________________
                     if (count_wrong==0){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
@@ -123,22 +123,24 @@ public class register extends AppCompatActivity {
                         myRef.child("username").setValue(username2);
                         uploadpic(username2);
 
-                        myRefE.child("name").setValue(fname2);
-                        myRefE.child("password").setValue(password2);
-                        myRefE.child("email").setValue(DotToPlus(new StringBuilder(email2)));
-                        myRefE.child("username").setValue(username2);
+                        myRefE.child("Ename").setValue(fname2);
+                        myRefE.child("Epassword").setValue(password2);
+                        myRefE.child("Eemail").setValue(DotToPlus(new StringBuilder(email2)));
+                        myRefE.child("Eusername").setValue(username2);
                         uploadpic(DotToPlus(new StringBuilder(email2)));
 
                         startActivity(new Intent(register.this,Login.class));
                     }}}
         });}
-
 //check conniction__________________________________________________________________________________
+
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
+
 //open galery_______________________________________________________________________________________
+
 private void SelectAPic() {
     Intent i=new Intent();
     i.setType("image/*");
@@ -146,8 +148,10 @@ private void SelectAPic() {
     startActivityForResult(i,1);
 
 }
+
 //change the pic____________________________________________________________________________________
     @Override
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -184,7 +188,6 @@ private void SelectAPic() {
                 });
     }
 
-
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________
 
     public boolean checkarray(char ar1[],char ar2[]){
@@ -206,7 +209,9 @@ private void SelectAPic() {
     public static boolean isValidEmail(CharSequence target) {
     return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
 }
+
 //__________________________________________________________________________________________________
+
     public String DotToPlus(StringBuilder email){
 
         String Semail=email.toString();

@@ -54,7 +54,6 @@ public class Login extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(),"faild to Login",Toast.LENGTH_SHORT).show();
                 }
-
             }
         };
 //__________________________________________________________________________________________________
@@ -85,7 +84,6 @@ public class Login extends AppCompatActivity {
                             intent.putExtra("name","raslan");
                             intent.putExtra("username","admin");
                             startActivity(intent);
-
                         }
                         else {
                             Query checkUser = (reference.orderByChild("username").equalTo(emailS));
@@ -100,9 +98,9 @@ public class Login extends AppCompatActivity {
 
                                         if (passwordFromDB.equals(passwordS)) {
                                             Intent intent = new Intent(Login.this, profile.class);
-                                            intent.putExtra("username", emailFromDB);
-                                            intent.putExtra("name", nameFromDB);
-                                            intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
+                                            intent.putExtra("Eusername", emailFromDB);
+                                            intent.putExtra("Ename", nameFromDB);
+                                            intent.putExtra("Eemail",PlusToDot(new StringBuilder(emailFromDB)));
                                             startActivity(intent);
                                         } else {
                                             password.setError("Wrong Password");
@@ -110,7 +108,7 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(DotToPlus(new StringBuilder(emailS)));
+                                        Query checkmail = reference.orderByChild("email").equalTo(emailS);
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -119,7 +117,6 @@ public class Login extends AppCompatActivity {
                                                     String passwordFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
                                                     String emailFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
                                                     String usernameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("username").getValue(String.class);
-
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, profile.class);
                                                         intent.putExtra("username", PlusToDot(new StringBuilder(emailS)));
@@ -180,7 +177,7 @@ public String PlusToDot(StringBuilder email){
     return email.toString();
 }
 
-public String DotToPlus(StringBuilder email){
+    public String DotToPlus(StringBuilder email){
 
         String Semail=email.toString();
         char[] CSemail=Semail.toCharArray();
