@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
 
                         }
                         else {
-                            Query checkUser = reference.orderByChild("username").equalTo(emailS);
+                            Query checkUser = (reference.orderByChild("username").equalTo(emailS));
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -115,10 +115,10 @@ public class Login extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if (dataSnapshot.exists()) {
-                                                    String nameFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("name").getValue(String.class);
-                                                    String passwordFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("password").getValue(String.class);
-                                                    String emailFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("email").getValue(String.class);
-                                                    String usernameFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("username").getValue(String.class);
+                                                    String nameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("name").getValue(String.class);
+                                                    String passwordFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
+                                                    String usernameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, profile.class);
@@ -147,7 +147,6 @@ public class Login extends AppCompatActivity {
                                 }
                             });
                         }}}}});
-
 //__________________________________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,7 +180,7 @@ public String PlusToDot(StringBuilder email){
     return email.toString();
 }
 
-    public String DotToPlus(StringBuilder email){
+public String DotToPlus(StringBuilder email){
 
         String Semail=email.toString();
         char[] CSemail=Semail.toCharArray();
