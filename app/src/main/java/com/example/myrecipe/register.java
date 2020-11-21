@@ -18,14 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -133,18 +129,6 @@ public class register extends AppCompatActivity {
                         myRefE.child("username").setValue(username2);
                         uploadpic(DotToPlus(new StringBuilder(email2)));
 
-                        mAuth.createUserWithEmailAndPassword(email2 , password2).addOnCompleteListener(register.this,new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            FirebaseUser user = mAuth.getCurrentUser();
-                                            Toast.makeText(getApplicationContext(), "register success.", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
                         startActivity(new Intent(register.this,Login.class));
                     }}}
         });}

@@ -110,19 +110,19 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(PlusToDot(emailS));
+                                        Query checkmail = reference.orderByChild("email").equalTo(PlusToDot(new StringBuilder(emailS)));
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if (dataSnapshot.exists()) {
-                                                    String nameFromDB = dataSnapshot.child(PlusToDot(emailS)).child("name").getValue(String.class);
-                                                    String passwordFromDB = dataSnapshot.child(PlusToDot(emailS)).child("password").getValue(String.class);
-                                                    String emailFromDB = dataSnapshot.child(PlusToDot(emailS)).child("email").getValue(String.class);
-                                                    String usernameFromDB = dataSnapshot.child(PlusToDot(emailS)).child("username").getValue(String.class);
+                                                    String nameFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("name").getValue(String.class);
+                                                    String passwordFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("password").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("email").getValue(String.class);
+                                                    String usernameFromDB = dataSnapshot.child(PlusToDot(new StringBuilder(emailS))).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, profile.class);
-                                                        intent.putExtra("username", PlusToDot(emailFromDB));
+                                                        intent.putExtra("username", PlusToDot(new StringBuilder(emailS)));
                                                         intent.putExtra("name", nameFromDB);
                                                         intent.putExtra("email",usernameFromDB);
                                                         startActivity(intent);
@@ -169,14 +169,15 @@ public class Login extends AppCompatActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
 //__________________________________________________________________________________________________
-public String PlusToDot(String email){
-    char[] emailT=email.toCharArray();
+public String PlusToDot(StringBuilder email){
+    String Semail=email.toString();
+    char[] CSemail=Semail.toCharArray();
 
-    for (int i=0;i<emailT.length;i++){
-        if (emailT[i]=='+'){
-            emailT[i]='.';
+    for (int i=0;i<CSemail.length;i++){
+        if (CSemail[i]=='+'){
+            email.setCharAt(i,'.');
         }
     }
-    return emailT.toString();
+    return email.toString();
 }
 }
