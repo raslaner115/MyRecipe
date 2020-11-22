@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Main"></activity>
-        <activity android:name=".header" />
         <activity android:name=".profile" />
         <activity android:name=".splash_screen">
             <intent-filter>
