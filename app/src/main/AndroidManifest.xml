@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".header"></activity>
+        <activity android:name=".Main"></activity>
+        <activity android:name=".header" />
         <activity android:name=".profile" />
         <activity android:name=".splash_screen">
             <intent-filter>
@@ -19,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".register" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
