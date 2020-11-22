@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            Query checkUser = reference.orderByChild("username").equalTo(email.toString());
+                            Query checkUser = (reference.orderByChild("username").equalTo(emailS));
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -125,12 +125,13 @@ public class Login extends AppCompatActivity {
                                                         startActivity(intent);
                                                     }
                                                     else {
-                                                        password.setError("wrong password");
+                                                        password.setError("Wrong Password");
+                                                        password.requestFocus();
                                                     }
-
                                                 }
                                                 else {
-                                                    email.setError("no such user exist v2");
+                                                    email.setError("No such User exist");
+                                                    email.requestFocus();
                                                 }
                                             }
                                             @Override
