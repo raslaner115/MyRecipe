@@ -113,10 +113,10 @@ public class Login extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
                                                 if (snapshotE.exists()) {
-                                                    String nameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("name").getValue(String.class);
-                                                    String passwordFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
-                                                    String emailFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
-                                                    String usernameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("username").getValue(String.class);
+                                                    String nameFromDB = dataSnapshot.child(emailS).child("name").getValue(String.class);
+                                                    String passwordFromDB = dataSnapshot.child(emailS).child("password").getValue(String.class);
+                                                    String emailFromDB = dataSnapshot.child(emailS).child("email").getValue(String.class);
+                                                    String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, profile.class);
                                                         intent.putExtra("username", PlusToDot(new StringBuilder(emailS)));
