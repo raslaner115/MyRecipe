@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity {
 
                                         if (passwordFromDB.equals(passwordS)) {
                                             Intent intent = new Intent(Login.this, profile.class);
-                                            intent.putExtra("username", emailFromDB);
+                                            intent.putExtra("username", usernameFromDB);
                                             intent.putExtra("name", nameFromDB);
                                             intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
                                             startActivity(intent);
@@ -108,22 +108,22 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(emailS);
+                                        Query checkmail = reference.orderByChild("email").equalTo(DotToPlus(new StringBuilder(emailS)));
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
                                                 if (snapshotE.exists()) {
-                                                    String nameFromDB = snapshotE.child(emailS).child("name").getValue(String.class);
-                                                    String passwordFromDB = snapshotE.child(emailS).child("password").getValue(String.class);
-                                                    String emailFromDB = snapshotE.child(emailS).child("email").getValue(String.class);
-                                                    String usernameFromDB = snapshotE.child(emailS).child("username").getValue(String.class);
+                                                    String nameFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("name").getValue(String.class);
+                                                    String passwordFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
+                                                    String emailFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
+                                                    String usernameFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
 
                                                         Intent intent = new Intent(Login.this, profile.class);
-                                                        intent.putExtra("username", PlusToDot(new StringBuilder(emailS)));
+                                                        intent.putExtra("email", emailS);
                                                         intent.putExtra("name", nameFromDB);
-                                                        intent.putExtra("email",usernameFromDB);
+                                                        intent.putExtra("username",usernameFromDB);
                                                         startActivity(intent);
                                                     }
                                                     else{
