@@ -119,13 +119,13 @@ public class register extends AppCompatActivity {
                     if (count_wrong==0){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
-                        myRef.child("email").setValue(email2);
+                        myRef.child("email").setValue(DotToPlus(new StringBuilder(email2)));
                         myRef.child("username").setValue(username2);
                         uploadpic(username2);
 
                         myRefE.child("name").setValue(fname2);
                         myRefE.child("password").setValue(password2);
-                        myRefE.child("email").setValue(email2);
+                        myRefE.child("email").setValue(DotToPlus(new StringBuilder(email2)));
                         myRefE.child("username").setValue(username2);
                         uploadpic(DotToPlus(new StringBuilder(email2)));
 

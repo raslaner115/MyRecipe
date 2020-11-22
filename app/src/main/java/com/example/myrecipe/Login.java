@@ -111,8 +111,8 @@ public class Login extends AppCompatActivity {
                                         Query checkmail = reference.orderByChild("email").equalTo(emailS);
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                if (dataSnapshot.exists()) {
+                                            public void onDataChange(@NonNull DataSnapshot snapshotE) {
+                                                if (snapshotE.exists()) {
                                                     String nameFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("name").getValue(String.class);
                                                     String passwordFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
                                                     String emailFromDB = dataSnapshot.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
@@ -124,13 +124,13 @@ public class Login extends AppCompatActivity {
                                                         intent.putExtra("email",usernameFromDB);
                                                         startActivity(intent);
                                                     }
-                                                    else {
-                                                        password.setError("Wrong Password");
+                                                    else{
+                                                        password.setError("Wrong password");
                                                         password.requestFocus();
                                                     }
                                                 }
-                                                else {
-                                                    email.setError("No such User exist");
+                                                else{
+                                                    email.setError("no such user exist");
                                                     email.requestFocus();
                                                 }
                                             }
