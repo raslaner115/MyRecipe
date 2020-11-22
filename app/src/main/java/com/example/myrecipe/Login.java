@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
                     }
                     if (count==0){
                         if (emailS.equals("admin") && passwordS.equals("R")){
-                            Intent intent=new Intent(Login.this, profile.class);
+                            Intent intent=new Intent(Login.this, MainActivity.class);
                             intent.putExtra("email","admin@admin.admin");
                             intent.putExtra("name","raslan");
                             intent.putExtra("username","admin");
@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
                                         String usernameFromDB = dataSnapshot.child(emailS).child("username").getValue(String.class);
 
                                         if (passwordFromDB.equals(passwordS)) {
-                                            Intent intent = new Intent(Login.this, profile.class);
+                                            Intent intent = new Intent(Login.this, MainActivity.class);
                                             intent.putExtra("username", usernameFromDB);
                                             intent.putExtra("name", nameFromDB);
                                             intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
@@ -120,7 +120,7 @@ public class Login extends AppCompatActivity {
 
                                                     if (passwordFromDB.equals(passwordS)) {
 
-                                                        Intent intent = new Intent(Login.this, profile.class);
+                                                        Intent intent = new Intent(Login.this, MainActivity.class);
                                                         intent.putExtra("email", emailS);
                                                         intent.putExtra("name", nameFromDB);
                                                         intent.putExtra("username",usernameFromDB);
