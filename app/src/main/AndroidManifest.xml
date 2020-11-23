@@ -9,7 +9,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Main"></activity>
+        <activity android:name=".Spices"></activity>
+        <activity android:name=".Ingredients" />
+        <activity android:name=".addP" />
+        <activity android:name=".addRecipe" />
+        <activity android:name=".Main" />
         <activity android:name=".profile" />
         <activity android:name=".splash_screen">
             <intent-filter>

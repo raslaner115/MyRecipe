@@ -8,5 +8,6 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/food" android:icon="@drawable/food" android:title="food" ></item>
         <item android:id="@+id/drink" android:icon="@drawable/cocktaila" android:title="drink" ></item>
+        <item android:id="@+id/add" android:icon="@drawable/cocktaila" android:title="addRecipe" ></item>
     </group>
 </menu>
