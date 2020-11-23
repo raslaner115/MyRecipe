@@ -21,7 +21,6 @@ public class Spices extends AppCompatActivity {
         final int[] sa = {0,0,0,0,0,0};
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
-        DatabaseReference myRefE = database.getReference((String)getIntent().getSerializableExtra("email"));
 
         String[] spices;
         Button salt=findViewById(R.id.salt);
@@ -31,11 +30,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[0]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("salt").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("salt").setValue("true");
                     sa[0]++;
                 }
                 else if (sa[0] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("salt").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("salt").setValue("false");
                     sa[0]--;
                 }
 
@@ -50,11 +49,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[1]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("pepper").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("pepper").setValue("true");
                     sa[1]++;
                 }
                 else if (sa[1] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("pepper").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("pepper").setValue("false");
                     sa[1]--;
                 }
             }
@@ -67,11 +66,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[2]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cinnamon").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cinnamon").setValue("true");
                     sa[2]++;
                 }
                 else if (sa[2] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cinnamon").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cinnamon").setValue("false");
                     sa[2]--;
                 }
             }
@@ -85,11 +84,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[3]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cloves").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cloves").setValue("true");
                     sa[3]++;
                 }
                 else if (sa[3] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cloves").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Cloves").setValue("false");
                     sa[3]--;
                 }
             }
@@ -103,11 +102,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[4]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("ginger").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("ginger").setValue("true");
                     sa[4]++;
                 }
                 else if (sa[4] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("ginger").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("ginger").setValue("false");
                     sa[4]--;
                 }
             }
@@ -122,11 +121,11 @@ public class Spices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sa[5]==0){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Carom").setValue("true");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Carom").setValue("true");
                     sa[5]++;
                 }
                 else if (sa[5] ==1){
-                    myRefE.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Carom").setValue("false");
+                    myRefU.child((String)getIntent().getSerializableExtra("username")).child("spices").child("Carom").setValue("false");
                     sa[5]--;
                 }
             }
