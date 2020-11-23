@@ -19,26 +19,62 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
+            <EditText
+                android:id="@+id/raiceA"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/raice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="raice" />
+
+            <EditText
+                android:id="@+id/onionA"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+            <Button
+                android:id="@+id/onion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="onion" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/carrotA"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+            <Button
+                android:id="@+id/buttyjuton9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button" />
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+            <EditText
+                android:id="@+id/edittytyuytrTextNumber3"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button2"
+                android:id="@+id/butttyuytron7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button" />
@@ -47,39 +83,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber4"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
             <Button
                 android:id="@+id/button13"
@@ -87,11 +97,13 @@
                 android:layout_height="wrap_content"
                 android:text="Button" />
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber5"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
             <Button
                 android:id="@+id/button11"
@@ -104,11 +116,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/button19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber6"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
             <Button
                 android:id="@+id/button18"
@@ -116,11 +130,13 @@
                 android:layout_height="wrap_content"
                 android:text="Button" />
 
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber7"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
             <Button
                 android:id="@+id/button16"
@@ -131,24 +147,346 @@
         <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+            <EditText
+                android:id="@+id/editTextNumbertrr8"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+        <Button
+            android:id="@+id/buttonyu20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
+
+
+            <EditText
+                android:id="@+id/editTextNu456ymber9"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttghyton23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/editghyTextNumber10"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/butt5eton25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTextNhytyumber11"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttohyrhtn27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+            <EditText
+                android:id="@+id/editTexpkhfjtNumber12"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttgybon29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTextNbfvgfumber13"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttbvfdgon31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editTevrdhtrrxtNumber14"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+    <Button
+        android:id="@+id/buttvhon33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+            <EditText
+                android:id="@+id/editvhrhyjTextNumber15"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+    <Button
+        android:id="@+id/buttonvtjyr35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+</TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/editTvtfyjjrhextNumber16"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/bhtydtnbutton37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTex5657uyttNumber17"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+        <Button
+            android:id="@+id/butthhnjyyon39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/editrtTextNumber18"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/butrtyttyrton41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTextNutytmber19"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttton1tyt43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/edit66treTextNumber20"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/but5hgton45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTeytytrgxtNumber21"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/butthtgre5yon47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/editTextNumber25"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+            <EditText
+                android:id="@+id/editTextNumber26"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <EditText
+            android:id="@+id/editTextNumber0"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/editTextNumber2"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <EditText
+            android:id="@+id/editTextNumber3"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <EditText
+            android:id="@+id/editTextNumber8"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
         <Button
             android:id="@+id/button20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
 
-        <Button
-            android:id="@+id/button22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+
+        <EditText
+            android:id="@+id/editTextNumber9"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button23"
@@ -160,11 +498,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber10"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button25"
@@ -172,11 +512,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber11"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button27"
@@ -187,12 +529,13 @@
         <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-        <Button
-            android:id="@+id/button28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber12"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button29"
@@ -200,11 +543,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber13"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button31"
@@ -213,42 +558,48 @@
             android:text="Button" />
     </TableRow>
         <TableRow
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber14"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
-    <Button
-        android:id="@+id/button33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        <Button
+            android:id="@+id/button33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
-    <Button
-        android:id="@+id/button34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber15"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
-    <Button
-        android:id="@+id/button35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-</TableRow>
+        <Button
+            android:id="@+id/button35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
         <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber16"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button37"
@@ -256,12 +607,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button38"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
+        <EditText
+            android:id="@+id/editTextNumber17"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
         <Button
             android:id="@+id/button39"
             android:layout_width="wrap_content"
@@ -272,11 +624,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button40"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber18"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button41"
@@ -284,11 +638,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button42"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber19"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button143"
@@ -300,11 +656,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button44"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber20"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button45"
@@ -312,11 +670,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button46"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumber21"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
             android:id="@+id/button47"
@@ -324,30 +684,34 @@
             android:layout_height="wrap_content"
             android:text="Button" />
     </TableRow>
-        <TableRow
+         <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
+        <EditText
+            android:id="@+id/editTextNumber43525"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
         <Button
-            android:id="@+id/button48"
+            android:id="@+id/butt435on49"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button49"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <EditText
+            android:id="@+id/editTextNumb4535er26"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
 
         <Button
-            android:id="@+id/button50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button51"
+            android:id="@+id/butto45345n51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
@@ -367,11 +731,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button52"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber27"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
         <Button
             android:id="@+id/button53"
@@ -379,11 +745,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <Button
-            android:id="@+id/button54"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            <EditText
+                android:id="@+id/aaaaaaaaaa28"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
         <Button
             android:id="@+id/button55"
@@ -395,11 +763,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button56"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            <EditText
+                android:id="@+id/editTextNumber29"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
 
         <Button
             android:id="@+id/button57"
@@ -407,14 +777,80 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
+            <EditText
+                android:id="@+id/editTextNumber30"
+                android:layout_width="61dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="cup"/>
+
         <Button
-            android:id="@+id/button58"
+            android:id="@+id/button59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/editTextNutrrermber27"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/buttortn53"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
 
+        <EditText
+            android:id="@+id/aaaaaaataaa28"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
         <Button
-            android:id="@+id/button59"
+            android:id="@+id/buttoretn55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/editTextNum43ber29"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button543537"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <EditText
+            android:id="@+id/editTextNumber30244"
+            android:layout_width="61dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="cup"/>
+
+        <Button
+            android:id="@+id/button591"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />

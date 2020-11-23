@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,7 +33,6 @@ public class register extends AppCompatActivity {
     public   Uri imageuri;
     private FirebaseStorage storage;
     private StorageReference mStorageRef;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class register extends AppCompatActivity {
 
         storage = FirebaseStorage.getInstance();
         mStorageRef=storage.getReference();
-        mAuth = FirebaseAuth.getInstance();
+
 //__________________________________________________________________________________________________
         Propic.setOnClickListener(new View.OnClickListener() {
             @Override

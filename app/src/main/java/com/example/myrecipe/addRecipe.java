@@ -19,7 +19,11 @@ public class addRecipe extends AppCompatActivity {
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(addRecipe.this,addP.class));
+
+                Intent intentt=new Intent(addRecipe.this, addP.class);
+                intentt.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                startActivity(intentt);
             }
         });
     }

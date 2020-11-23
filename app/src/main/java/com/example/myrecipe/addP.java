@@ -20,6 +20,7 @@ public class addP extends AppCompatActivity {
         Ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(addP.this,Ingredients.class));
             }
         });
@@ -28,6 +29,10 @@ public class addP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intentt=new Intent(addP.this, Spices.class);
+                intentt.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                startActivity(intentt);
             }
         });
     }

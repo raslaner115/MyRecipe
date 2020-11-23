@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,37 +23,19 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener maths;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
         EditText email=findViewById(R.id.email);
         EditText password=findViewById(R.id.editTextTextPassword);
         RelativeLayout relativeLayout=findViewById(R.id.relativelayout);;
         Button login=findViewById(R.id.login);
         TextView reg=findViewById(R.id.register);
-        mAuth = FirebaseAuth.getInstance();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(email.getText().toString());
-//__________________________________________________________________________________________________
-        maths=new FirebaseAuth.AuthStateListener() {
-            FirebaseUser Fuser=mAuth.getCurrentUser();
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (Fuser!=null){
-                    Toast.makeText(getApplicationContext(),"Login",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Login.this, register.class));
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"faild to Login",Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
+
 //__________________________________________________________________________________________________
         login.setOnClickListener(new View.OnClickListener() {
             @Override
