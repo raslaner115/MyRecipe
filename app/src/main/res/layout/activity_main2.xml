@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Main">
 
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="295dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginRight="116dp"
+        android:layout_marginBottom="0dp"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu"
+        android:id="@+id/navigation"/>
 </RelativeLayout>

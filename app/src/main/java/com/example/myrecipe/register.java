@@ -210,7 +210,7 @@ private void SelectAPic() {
     return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
 }
 
-//__________________________________________________________________________________________________
+//change the dot in the email to plus to let it sign in database firebase___________________________
 
     public String DotToPlus(StringBuilder email){
 
