@@ -68,7 +68,7 @@ public class Spices extends AppCompatActivity  {
              public void onClick(View v) {
                  for (int i=0;i<spices.length;i++){
                      if (IsSpices[i]){
-                         WSpices[0]=WSpices[0]+" "+SpicesName[i];
+                         WSpices[0]=WSpices[0]+"  "+SpicesName[i];
                      }
                  }
                  Intent sp=new Intent(Spices.this,addP.class);
