@@ -5,24 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Spices extends AppCompatActivity implements View.OnClickListener {
-
-    final int[] sa = {0, 0, 0, 0, 0, 0};
+public class Spices extends AppCompatActivity  {
 
 
-    Button Carom = findViewById(R.id.Carom);
-    Button salt = findViewById(R.id.salt);
-    Button Cinnamon = findViewById(R.id.Cinnamon);
-    Button pepper = findViewById(R.id.pepper);
-    Button Cloves = findViewById(R.id.Cloves);
-    Button Ginger = findViewById(R.id.Ginger);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +23,14 @@ public class Spices extends AppCompatActivity implements View.OnClickListener {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRefU = database.getReference((String) getIntent().getSerializableExtra("username"));
 
+        Boolean IsSalt=false,IsPepper=false,IsCinnamon=false,IsCarom=false,IsGinger=false,IsCloves=false;
+
+        Button Carom = findViewById(R.id.Carom);
+        Button salt = findViewById(R.id.salt);
+        Button Cinnamon = findViewById(R.id.Cinnamon);
+        Button pepper = findViewById(R.id.pepper);
+        Button Cloves = findViewById(R.id.Cloves);
+        Button Ginger = findViewById(R.id.Ginger);
 
         TextView CaromA = findViewById(R.id.CaromA);
         TextView GingerA = findViewById(R.id.GingerA);
@@ -40,64 +39,28 @@ public class Spices extends AppCompatActivity implements View.OnClickListener {
         TextView CinnamonA = findViewById(R.id.CinnamonA);
         TextView saltA = findViewById(R.id.saltA);
 
-         Button[] spices = {salt, pepper, Cinnamon, Cloves, Ginger, Carom};
 
-        for (int i = 0; i < spices.length; i++) {
-            spices[i].setOnClickListener(this);
-        }
+        Boolean[] IsSpices={IsCarom,IsCinnamon,IsCloves,IsGinger,IsPepper,IsSalt};
 
-    }
-    @Override
-    public void onClick(View v) {
+        Button[] spices = {salt, pepper, Cinnamon, Cloves, Ginger, Carom};
 
-        switch (v.getId()){
-            case R.id.salt:
-                if (sa[0]==0) {
-                    Toast.makeText(getApplicationContext(), "salt selected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.GREEN);
-                    sa[0]++;
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "salt unselected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.LTGRAY);
-                    sa[0]--;
-                }
-            case R.id.Carom:
+         for (int i=0;i<spices.length;i++){
+             int ii=i;
+             spices[i].setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     if (!IsSpices[ii]) {
+                         IsSpices[ii] = true;
+                         spices[ii].setBackgroundColor(Color.GREEN);
+                     } else {
+                         IsSpices[ii] = false;
+                         spices[ii].setBackgroundColor(Color.LTGRAY);
+                     }
 
-                if (sa[1]==0) {
-                    Toast.makeText(getApplicationContext(), "carom selected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.GREEN);
-                    sa[0]++;
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "carom unselected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.LTGRAY);
-                    sa[1]--;
-                }
-            case R.id.Cinnamon:
+                 }
+             });
 
-                if (sa[2]==0) {
-                    Toast.makeText(getApplicationContext(), "salt selected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.GREEN);
-                    sa[2]++;
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "salt unselected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.LTGRAY);
-                    sa[2]--;
-                }
-            case R.id.pepper:
 
-                if (sa[3]==0) {
-                    Toast.makeText(getApplicationContext(), "salt selected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.GREEN);
-                    sa[3]++;
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "salt unselected", Toast.LENGTH_SHORT).show();
-                    salt.setBackgroundColor(Color.LTGRAY);
-                    sa[3]--;
-                }
         }
     }
 }
