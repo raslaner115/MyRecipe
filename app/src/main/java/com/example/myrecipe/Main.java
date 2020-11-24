@@ -69,7 +69,7 @@ public class Main extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (c==0){
                 Toast.makeText(getApplicationContext(),"press another time to logout",Toast.LENGTH_SHORT).show();
-                c++;
+                c=1;
                 return true;
             }
 
@@ -77,9 +77,13 @@ public class Main extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    c--;
+                    c=0;
                 }
-            }, 3000);
+            }, 2000);
+            if(c==1){
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
 
         }
         return false;
