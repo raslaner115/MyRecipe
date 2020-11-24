@@ -73,6 +73,7 @@ public class Spices extends AppCompatActivity  {
                  }
                  Intent sp=new Intent(Spices.this,addP.class);
                  sp.putExtra("spices",WSpices[0]);
+                 startActivity(sp);
              }
          });
 
