@@ -2,6 +2,7 @@ package com.example.myrecipe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -9,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends AppCompatActivity {
 
@@ -63,23 +61,21 @@ public class Main extends AppCompatActivity {
             }
         });
     }
-    int c=0;
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
-// super.onBackPressed();
-        if (c==0) {
-            Toast.makeText(getApplicationContext(), "press another time to logout", Toast.LENGTH_SHORT).show();
-            c = 1;
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
         }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        if(c==1){
-            Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
-        }
-
-        new Timer().schedule(new TimerTask() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                c=0;
+                doubleBackToExitPressedOnce=false;
             }
         }, 2000);
     }
