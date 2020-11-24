@@ -66,7 +66,11 @@ public class Spices extends AppCompatActivity  {
          save.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-
+                 for (int i=0;i<spices.length;i++){
+                     if (IsSpices[i]){
+                         WSpices[0]=WSpices[0]+" "+SpicesName[i];
+                     }
+                 }
                  Intent sp=new Intent(Spices.this,addP.class);
                  sp.putExtra("spices",WSpices[0]);
                  startActivity(sp);
