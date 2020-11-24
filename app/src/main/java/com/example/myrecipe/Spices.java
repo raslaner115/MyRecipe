@@ -1,5 +1,6 @@
 package com.example.myrecipe;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,8 @@ public class Spices extends AppCompatActivity  {
         Button Cloves = findViewById(R.id.Cloves);
         Button Ginger = findViewById(R.id.Ginger);
 
+        Button save=findViewById(R.id.save);
+
         TextView CaromA = findViewById(R.id.CaromA);
         TextView GingerA = findViewById(R.id.GingerA);
         TextView ClovesA = findViewById(R.id.ClovesA);
@@ -39,9 +42,9 @@ public class Spices extends AppCompatActivity  {
         TextView CinnamonA = findViewById(R.id.CinnamonA);
         TextView saltA = findViewById(R.id.saltA);
 
-
-        Boolean[] IsSpices={IsCarom,IsCinnamon,IsCloves,IsGinger,IsPepper,IsSalt};
-
+        final String[] WSpices = {" "};
+        Boolean[] IsSpices={IsSalt,IsPepper,IsCinnamon,IsCloves,IsGinger,IsCarom};
+        String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
         Button[] spices = {salt, pepper, Cinnamon, Cloves, Ginger, Carom};
 
          for (int i=0;i<spices.length;i++){
@@ -59,8 +62,20 @@ public class Spices extends AppCompatActivity  {
 
                  }
              });
-
-
         }
+         save.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 for (int i=0;i<spices.length;i++){
+                     if (IsSpices[i]){
+                         WSpices[0]=WSpices[0]+" "+SpicesName[i];
+                     }
+                 }
+                 Intent sp=new Intent(Spices.this,addP.class);
+                 sp.putExtra("spices",WSpices[0]);
+             }
+         });
+
+
     }
 }

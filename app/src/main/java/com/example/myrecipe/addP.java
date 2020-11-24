@@ -14,6 +14,14 @@ public class addP extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addp);
 
+        TextView WS=findViewById(R.id.WSpices);
+
+
+
+        String WSpices=(String)getIntent().getSerializableExtra("spices");
+
+        WS.setText(WSpices);
+
         TextView Ingredient=findViewById(R.id.Ingredients);
         TextView Spice=findViewById(R.id.Spices);
 
