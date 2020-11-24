@@ -79,7 +79,7 @@ public class Main extends AppCompatActivity {
                 public void run() {
                     c=0;
                 }
-            }, 2000);
+            }, 200);
             if(c==1){
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
