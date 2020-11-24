@@ -72,21 +72,17 @@ public class Main extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "press another time to logout", Toast.LENGTH_SHORT).show();
                 c = 1;
             }
-
-                final Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        c=0;
-                        Toast.makeText(getApplicationContext(),"clean",Toast.LENGTH_SHORT).show();
-                    }
-                }, 2000);
-
                 if(c==1){
                     Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
-
-
                 }
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    c=0;
+                    Toast.makeText(getApplicationContext(),"clean",Toast.LENGTH_SHORT).show();
+                }
+            }, 2000);
                 return true;
         }
         return false;
