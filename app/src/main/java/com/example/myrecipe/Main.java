@@ -2,6 +2,7 @@ package com.example.myrecipe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 
 
         NavigationView navigationView=findViewById(R.id.navigation);
@@ -58,5 +60,13 @@ public class Main extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Toast.makeText(getApplicationContext(),"press another time to logout",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 }

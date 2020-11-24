@@ -42,7 +42,7 @@ public class Spices extends AppCompatActivity  {
         TextView CinnamonA = findViewById(R.id.CinnamonA);
         TextView saltA = findViewById(R.id.saltA);
 
-        final String[] WSpices = {"null"};
+        final String[] WSpices = {""};
         Boolean[] IsSpices={IsSalt,IsPepper,IsCinnamon,IsCloves,IsGinger,IsCarom};
         String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
         Button[] spices = {salt, pepper, Cinnamon, Cloves, Ginger, Carom};
