@@ -66,31 +66,29 @@ public class Main extends AppCompatActivity {
     int c=0;
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-        if(c==1){
-        Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+            if (c==0) {
+                Toast.makeText(getApplicationContext(), "press another time to logout", Toast.LENGTH_SHORT).show();
+                c = 1;
+            }
 
-    }
+                final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        c=0;
+                        Toast.makeText(getApplicationContext(),"clean",Toast.LENGTH_SHORT).show();
+                    }
+                }, 2000);
 
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    c=0;
-                    Toast.makeText(getApplicationContext(),"clean",Toast.LENGTH_SHORT).show();
+                if(c==1){
+                    Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
 
                 }
-            }, 2000);
-
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                if (c==0){
-                    Toast.makeText(getApplicationContext(),"press another time to logout",Toast.LENGTH_SHORT).show();
-                    c=1;
-                    return true;
-                }
-
+                return true;
         }
         return false;
     }
