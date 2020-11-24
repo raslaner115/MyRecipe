@@ -78,10 +78,13 @@ public class Main extends AppCompatActivity {
                 @Override
                 public void run() {
                     c=0;
+                    Toast.makeText(getApplicationContext(),"clean",Toast.LENGTH_SHORT).show();
+
                 }
-            }, 200);
+            }, 2000);
             if(c==1){
                 Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
+
 
             }
 
