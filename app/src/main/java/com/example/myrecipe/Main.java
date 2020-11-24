@@ -81,6 +81,8 @@ public class Main extends AppCompatActivity {
                 }
             }, 200);
             if(c==1){
+                Toast.makeText(getApplicationContext(),"logout",Toast.LENGTH_SHORT).show();
+
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
             }
