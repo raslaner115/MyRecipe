@@ -42,7 +42,7 @@ public class Spices extends AppCompatActivity  {
         TextView CinnamonA = findViewById(R.id.CinnamonA);
         TextView saltA = findViewById(R.id.saltA);
 
-        final String[] WSpices = {" "};
+        final String[] WSpices = {"null"};
         Boolean[] IsSpices={IsSalt,IsPepper,IsCinnamon,IsCloves,IsGinger,IsCarom};
         String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
         Button[] spices = {salt, pepper, Cinnamon, Cloves, Ginger, Carom};
@@ -66,11 +66,7 @@ public class Spices extends AppCompatActivity  {
          save.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 for (int i=0;i<spices.length;i++){
-                     if (IsSpices[i]){
-                         WSpices[0]=WSpices[0]+" "+SpicesName[i];
-                     }
-                 }
+
                  Intent sp=new Intent(Spices.this,addP.class);
                  sp.putExtra("spices",WSpices[0]);
                  startActivity(sp);
