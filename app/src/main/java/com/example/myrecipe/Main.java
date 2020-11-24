@@ -2,6 +2,8 @@ package com.example.myrecipe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -61,11 +63,24 @@ public class Main extends AppCompatActivity {
             }
         });
     }
+    int c=0;
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Toast.makeText(getApplicationContext(),"press another time to logout",Toast.LENGTH_SHORT).show();
-            return true;
+            if (c==0){
+                Toast.makeText(getApplicationContext(),"press another time to logout",Toast.LENGTH_SHORT).show();
+                c++;
+                return true;
+            }
+
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    c--;
+                }
+            }, 3000);
+
         }
         return false;
     }
