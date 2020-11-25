@@ -31,8 +31,8 @@ public class addP extends AppCompatActivity {
         setContentView(R.layout.activity_addp);
 
         TextView WS=findViewById(R.id.WSpices);
-        final String[] WSpices = {(String) getIntent().getSerializableExtra("spices")};
-        WS.setText(WSpices[0]);
+         String WSpices = (String) getIntent().getSerializableExtra("spices");
+        WS.setText(WSpices);
 
         EditText Rname=findViewById(R.id.name);
         TextView Ingredient=findViewById(R.id.Ingredients);
@@ -43,7 +43,7 @@ public class addP extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(),"rfgethyrtgrfed",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -59,7 +59,6 @@ public class addP extends AppCompatActivity {
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WSpices[0] =null;
                 WS.setText(null);
                 startActivity(new Intent(addP.this, Spices.class));
             }
