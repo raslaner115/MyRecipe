@@ -17,8 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -41,31 +39,11 @@ public class addP extends AppCompatActivity {
         TextView Spice=findViewById(R.id.Spices);
         Button save=findViewById(R.id.save);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference MyRecipeU = database.getReference((String)getIntent().getSerializableExtra("username"));
-        DatabaseReference AllRecipe = database.getReference("all recipe");
-
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                MyRecipeU.child("my recipe").child("spices").child("salt").setValue((Boolean)getIntent().getSerializableExtra("IsSalt"));
-                MyRecipeU.child("my recipe").child("spices").child("Pepper").setValue((Boolean)getIntent().getSerializableExtra("IsPepper"));
-                MyRecipeU.child("my recipe").child("spices").child("Cinnamon").setValue((Boolean)getIntent().getSerializableExtra("IsCinnamon"));
-                MyRecipeU.child("my recipe").child("spices").child("Cloves").setValue((Boolean)getIntent().getSerializableExtra("IsCloves"));
-                MyRecipeU.child("my recipe").child("spices").child("Ginger").setValue((Boolean)getIntent().getSerializableExtra("IsGinger"));
-                MyRecipeU.child("my recipe").child("spices").child("Carom").setValue((Boolean)getIntent().getSerializableExtra("IsCarom"));
-
-                AllRecipe.child("my recipe").child("spices").child("salt").setValue((Boolean)getIntent().getSerializableExtra("IsSalt"));
-                AllRecipe.child("my recipe").child("spices").child("Pepper").setValue((Boolean)getIntent().getSerializableExtra("IsPepper"));
-                AllRecipe.child("my recipe").child("spices").child("Cinnamon").setValue((Boolean)getIntent().getSerializableExtra("IsCinnamon"));
-                AllRecipe.child("my recipe").child("spices").child("Cloves").setValue((Boolean)getIntent().getSerializableExtra("IsCloves"));
-                AllRecipe.child("my recipe").child("spices").child("Ginger").setValue((Boolean)getIntent().getSerializableExtra("IsGinger"));
-                AllRecipe.child("my recipe").child("spices").child("Carom").setValue((Boolean)getIntent().getSerializableExtra("IsCarom"));
-
-
-                uploadpic((String)getIntent().getSerializableExtra("username"),Rname.toString());
             }
         });
 
