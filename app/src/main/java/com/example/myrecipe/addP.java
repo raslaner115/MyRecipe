@@ -47,6 +47,7 @@ public class addP extends AppCompatActivity {
             }
         });
 
+
         Ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
