@@ -42,7 +42,7 @@ public class addP extends AppCompatActivity {
         Button save=findViewById(R.id.save);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference MyRecipeE = database.getReference((String)getIntent().getSerializableExtra("email"));
+        DatabaseReference MyRecipeE = database.getReference(DotToPlus(new StringBuilder((String)getIntent().getSerializableExtra("email"))));
         DatabaseReference MyRecipeU = database.getReference((String)getIntent().getSerializableExtra("username"));
         DatabaseReference AllRecipe = database.getReference("all recipe");
 
@@ -154,4 +154,18 @@ public class addP extends AppCompatActivity {
                     }
                 });
     }
+
+    public String DotToPlus(StringBuilder email){
+
+        String Semail=email.toString();
+        char[] CSemail=Semail.toCharArray();
+
+        for (int i=0;i<CSemail.length;i++){
+            if (CSemail[i]=='.'){
+                email.setCharAt(i,'+');
+            }
+        }
+        return email.toString();
+    }
+
 }
