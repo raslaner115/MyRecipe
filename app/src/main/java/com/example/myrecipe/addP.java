@@ -43,7 +43,7 @@ public class addP extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"rfgethyrtgrfed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),WSpices,Toast.LENGTH_LONG).show();
             }
         });
 
