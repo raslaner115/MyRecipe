@@ -74,7 +74,7 @@
         android:inputType="textLongMessage" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/save"
         android:layout_width="134dp"
         android:layout_height="48dp"
         android:layout_below="@+id/editTextTextPersonName"

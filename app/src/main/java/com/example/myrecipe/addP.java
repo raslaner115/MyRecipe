@@ -35,8 +35,8 @@ public class addP extends AppCompatActivity {
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WSpices[0] =null;
-                WS.setText(null);
+                WSpices[0] =" ";
+                WS.setText(" ");
                 startActivity(new Intent(addP.this, Spices.class));
             }
         });
