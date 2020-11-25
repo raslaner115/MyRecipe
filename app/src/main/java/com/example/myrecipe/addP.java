@@ -42,7 +42,7 @@ public class addP extends AppCompatActivity {
         Button save=findViewById(R.id.save);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference((String) getIntent().getSerializableExtra("username"));
+        DatabaseReference myRef = database.getReference((String)getIntent().getSerializableExtra("username"));
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,9 @@ public class addP extends AppCompatActivity {
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(addP.this, Spices.class));
+                Intent intentt=new Intent(addP.this, Spices.class);
+                intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                startActivity(intentt);
             }
         });
 

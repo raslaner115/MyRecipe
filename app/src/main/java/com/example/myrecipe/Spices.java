@@ -75,6 +75,7 @@ public class Spices extends AppCompatActivity  {
                  sp.putExtra("IsCloves",IsSpices[3]);
                  sp.putExtra("IsGinger",IsSpices[4]);
                  sp.putExtra("IsCarom",IsSpices[5]);
+                 sp.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                  startActivity(sp);
              }
          });
