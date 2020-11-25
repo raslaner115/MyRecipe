@@ -144,12 +144,9 @@ private void SelectAPic() {
     i.setType("image/*");
     i.setAction(i.ACTION_GET_CONTENT);
     startActivityForResult(i,1);
-
 }
-
 //change the pic____________________________________________________________________________________
     @Override
-
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
