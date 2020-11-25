@@ -17,10 +17,9 @@ public class addP extends AppCompatActivity {
         TextView WS=findViewById(R.id.WSpices);
 
 
+        final String[] WSpices = {(String) getIntent().getSerializableExtra("spices")};
 
-        String WSpices=(String)getIntent().getSerializableExtra("spices");
-
-        WS.setText(WSpices);
+        WS.setText(WSpices[0]);
 
         TextView Ingredient=findViewById(R.id.Ingredients);
         TextView Spice=findViewById(R.id.Spices);
@@ -36,11 +35,9 @@ public class addP extends AppCompatActivity {
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intentt=new Intent(addP.this, Spices.class);
-                intentt.putExtra("email",(String)getIntent().getSerializableExtra("email"));
-                intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
-                startActivity(intentt);
+                WSpices[0] =null;
+                WS.setText(null);
+                startActivity(new Intent(addP.this, Spices.class));
             }
         });
     }
