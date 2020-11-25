@@ -19,7 +19,7 @@
         android:drawableStart="@drawable/email"
         android:drawableLeft="@drawable/email"
         android:ems="10"
-        android:hint="email"
+        android:hint="email/username"
         android:inputType="textEmailAddress" />
 
     <EditText
