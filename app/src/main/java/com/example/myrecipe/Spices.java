@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class Spices extends AppCompatActivity  {
 
 
@@ -21,8 +18,7 @@ public class Spices extends AppCompatActivity  {
         setContentView(R.layout.activity_spices);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRefU = database.getReference((String) getIntent().getSerializableExtra("username"));
+
 
         Boolean IsSalt=false,IsPepper=false,IsCinnamon=false,IsCarom=false,IsGinger=false,IsCloves=false;
 
