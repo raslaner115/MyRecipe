@@ -59,7 +59,6 @@ public class addP extends AppCompatActivity {
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WS.setText(null);
                 startActivity(new Intent(addP.this, Spices.class));
             }
         });
