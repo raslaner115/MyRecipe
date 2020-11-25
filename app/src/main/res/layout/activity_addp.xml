@@ -37,14 +37,10 @@
 
     <TextView
         android:id="@+id/Spices"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/Ingredients"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="18dp"
         android:text="Spices:"
         android:textSize="22dp" />
 
@@ -60,24 +56,11 @@
         android:inputType="textPersonName"
         android:textSize="22dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="match_parent"
-        android:layout_height="211dp"
-        android:layout_below="@+id/Spices"
-        android:layout_marginTop="-299dp"
-        android:width="1200dp"
-        android:height="12000dp"
-        android:background="@drawable/input"
-        android:ems="10"
-        android:hint="the steps"
-        android:inputType="textLongMessage" />
-
     <Button
         android:id="@+id/save"
-        android:layout_width="134dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="69dp"
+        android:layout_below="@+id/Spices"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -85,7 +68,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="139dp"
         android:layout_marginLeft="139dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="283dp"
         android:layout_marginEnd="138dp"
         android:layout_marginRight="138dp"
         android:layout_marginBottom="3dp"
@@ -95,21 +78,21 @@
 
     <TextView
         android:id="@+id/WSpices"
-        android:layout_width="313dp"
-        android:layout_height="88dp"
+        android:layout_width="128dp"
+        android:layout_height="83dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
         android:layout_marginTop="273dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="298dp"
+        android:layout_marginBottom="303dp"
         android:layout_toEndOf="@+id/Spices"
         android:layout_toRightOf="@+id/Spices"
-        android:textSize="20dp"
-        android:text="null" />
+        android:text=""
+        android:textSize="20dp" />
 
 </RelativeLayout>

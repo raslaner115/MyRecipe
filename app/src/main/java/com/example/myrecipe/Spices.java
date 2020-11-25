@@ -69,6 +69,12 @@ public class Spices extends AppCompatActivity  {
                  }
                  Intent sp=new Intent(Spices.this,addP.class);
                  sp.putExtra("spices",WSpices[0]);
+                 sp.putExtra("IsSalt",IsSpices[0]);
+                 sp.putExtra("IsPepper",IsSpices[1]);
+                 sp.putExtra("IsCinnamon",IsSpices[2]);
+                 sp.putExtra("IsCloves",IsSpices[3]);
+                 sp.putExtra("IsGinger",IsSpices[4]);
+                 sp.putExtra("IsCarom",IsSpices[5]);
                  startActivity(sp);
              }
          });

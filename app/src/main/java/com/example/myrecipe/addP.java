@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -39,11 +41,19 @@ public class addP extends AppCompatActivity {
         TextView Spice=findViewById(R.id.Spices);
         Button save=findViewById(R.id.save);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference((String) getIntent().getSerializableExtra("username"));
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),WSpices,Toast.LENGTH_LONG).show();
+                myRef.child("my recipe").child("spices").child("salt").setValue((String) getIntent().getSerializableExtra("IsSalt"));
+                myRef.child("my recipe").child("spices").child("pepper").setValue((String) getIntent().getSerializableExtra("IsPepper"));
+                myRef.child("my recipe").child("spices").child("cinnamon").setValue((String) getIntent().getSerializableExtra("IsCinnamon"));
+                myRef.child("my recipe").child("spices").child("cloves").setValue((String) getIntent().getSerializableExtra("IsCloves"));
+                myRef.child("my recipe").child("spices").child("ginger").setValue((String) getIntent().getSerializableExtra("IsGinger"));
+                myRef.child("my recipe").child("spices").child("carom").setValue((String) getIntent().getSerializableExtra("IsCarom"));
+
             }
         });
 
