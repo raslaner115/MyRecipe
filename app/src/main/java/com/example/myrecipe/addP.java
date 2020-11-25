@@ -42,7 +42,6 @@ public class addP extends AppCompatActivity {
         Button save=findViewById(R.id.save);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference MyRecipeE = database.getReference(DotToPlus(new StringBuilder((String)getIntent().getSerializableExtra("email"))));
         DatabaseReference MyRecipeU = database.getReference((String)getIntent().getSerializableExtra("username"));
         DatabaseReference AllRecipe = database.getReference("all recipe");
 
@@ -50,12 +49,6 @@ public class addP extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyRecipeE.child("my recipe").child("spices").child("salt").setValue((Boolean)getIntent().getSerializableExtra("IsSalt"));
-                MyRecipeE.child("my recipe").child("spices").child("Pepper").setValue((Boolean)getIntent().getSerializableExtra("IsPepper"));
-                MyRecipeE.child("my recipe").child("spices").child("Cinnamon").setValue((Boolean)getIntent().getSerializableExtra("IsCinnamon"));
-                MyRecipeE.child("my recipe").child("spices").child("Cloves").setValue((Boolean)getIntent().getSerializableExtra("IsCloves"));
-                MyRecipeE.child("my recipe").child("spices").child("Ginger").setValue((Boolean)getIntent().getSerializableExtra("IsGinger"));
-                MyRecipeE.child("my recipe").child("spices").child("Carom").setValue((Boolean)getIntent().getSerializableExtra("IsCarom"));
 
                 MyRecipeU.child("my recipe").child("spices").child("salt").setValue((Boolean)getIntent().getSerializableExtra("IsSalt"));
                 MyRecipeU.child("my recipe").child("spices").child("Pepper").setValue((Boolean)getIntent().getSerializableExtra("IsPepper"));
@@ -72,7 +65,6 @@ public class addP extends AppCompatActivity {
                 AllRecipe.child("my recipe").child("spices").child("Carom").setValue((Boolean)getIntent().getSerializableExtra("IsCarom"));
 
 
-                uploadpic((String)getIntent().getSerializableExtra("email"),Rname.toString());
                 uploadpic((String)getIntent().getSerializableExtra("username"),Rname.toString());
             }
         });
