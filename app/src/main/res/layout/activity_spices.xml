@@ -80,7 +80,7 @@
             android:layout_height="48dp"
             android:ems="10"
             android:inputType="number"
-            android:hint="spoonn" />
+            android:hint="spoon" />
 
         <Button
             android:id="@+id/Ginger"

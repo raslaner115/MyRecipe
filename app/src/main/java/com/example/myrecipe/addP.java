@@ -43,7 +43,7 @@ public class addP extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
-        DatabaseReference myRefA = database.getReference("all recipes");
+
 
         String[] isSpices={(String) getIntent().getSerializableExtra("IsSalt"),(String) getIntent().getSerializableExtra("IsPepper"),(String) getIntent().getSerializableExtra("IsCinnamon"),(String) getIntent().getSerializableExtra("IsCloves"),(String) getIntent().getSerializableExtra("IsGinger"),(String) getIntent().getSerializableExtra("IsCarom")};
         String[] SName={"salt","pepper","cinnamon","cloves","ginger","carom"};
@@ -53,7 +53,7 @@ public class addP extends AppCompatActivity {
             public void onClick(View v) {
                 for (int i=0;i<isSpices.length;i++){
                     myRefU.child("my recipe").child(Rname.toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
-                    myRefA.child(Rname.toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+
                 }
             }
         });
