@@ -52,7 +52,7 @@ public class addP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (int i=0;i<isSpices.length;i++){
-                    myRefU.child("my recipe").child(Rname.toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                    myRefU.child("my recipe").child("try").child("spices").child(SName[i]).setValue(isSpices[i]);
 
                 }
             }
