@@ -42,18 +42,19 @@ public class addP extends AppCompatActivity {
         Button save=findViewById(R.id.save);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference((String)getIntent().getSerializableExtra("username"));
+        DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
+        DatabaseReference myRefA = database.getReference("all recipes");
+
+        String[] isSpices={(String) getIntent().getSerializableExtra("IsSalt"),(String) getIntent().getSerializableExtra("IsPepper"),(String) getIntent().getSerializableExtra("IsCinnamon"),(String) getIntent().getSerializableExtra("IsCloves"),(String) getIntent().getSerializableExtra("IsGinger"),(String) getIntent().getSerializableExtra("IsCarom")};
+        String[] SName={"salt","pepper","cinnamon","cloves","ginger","carom"};
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.child("my recipe").child("spices").child("salt").setValue((String) getIntent().getSerializableExtra("IsSalt"));
-                myRef.child("my recipe").child("spices").child("pepper").setValue((String) getIntent().getSerializableExtra("IsPepper"));
-                myRef.child("my recipe").child("spices").child("cinnamon").setValue((String) getIntent().getSerializableExtra("IsCinnamon"));
-                myRef.child("my recipe").child("spices").child("cloves").setValue((String) getIntent().getSerializableExtra("IsCloves"));
-                myRef.child("my recipe").child("spices").child("ginger").setValue((String) getIntent().getSerializableExtra("IsGinger"));
-                myRef.child("my recipe").child("spices").child("carom").setValue((String) getIntent().getSerializableExtra("IsCarom"));
-
+                for (int i=0;i<isSpices.length;i++){
+                    myRefU.child("my recipe").child(Rname.toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                    myRefA.child(Rname.toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                }
             }
         });
 
