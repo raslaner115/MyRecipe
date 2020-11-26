@@ -43,6 +43,7 @@ public class addP extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
+        DatabaseReference myRefA = database.getReference("all recipes");
 
 
         String[] isSpices={(String) getIntent().getSerializableExtra("IsSalt"),(String) getIntent().getSerializableExtra("IsPepper"),(String) getIntent().getSerializableExtra("IsCinnamon"),(String) getIntent().getSerializableExtra("IsCloves"),(String) getIntent().getSerializableExtra("IsGinger"),(String) getIntent().getSerializableExtra("IsCarom")};
@@ -51,11 +52,16 @@ public class addP extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i=0;i<isSpices.length;i++){
-                    myRefU.child("my recipe").child("try").child("spices").child(SName[i]).setValue(isSpices[i]);
-
+                if ((Rname.getText().toString()).length()==0){
+                    Rname.setError("name can't be empty");
                 }
-            }
+                else {
+                    for (int i=0;i<isSpices.length;i++) {
+                        myRefU.child("my recipe").child(Rname.getText().toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                        myRefA.child(Rname.getText().toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                    }
+                 }
+             }
         });
 
 
@@ -107,6 +113,10 @@ public class addP extends AppCompatActivity {
         if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             pic.setImageURI(imageuri);
+            pic.setMinimumHeight(180);
+            pic.setMinimumWidth(180);
+            pic.setMaxHeight(180);
+            pic.setMaxWidth(180);
         }
     }
 
