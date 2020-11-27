@@ -29,6 +29,8 @@ public class addRecipe extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        startActivity(new Intent(addRecipe.this,Main.class));
+       Intent intent= new Intent(addRecipe.this,Main.class);
+        intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+        startActivity(intent);
     }
 }

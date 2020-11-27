@@ -172,4 +172,7 @@ public String PlusToDot(StringBuilder email){
         }
         return email.toString();
     }
+    public void onBackPressed() {
+        System.exit(1);
+    }
 }
