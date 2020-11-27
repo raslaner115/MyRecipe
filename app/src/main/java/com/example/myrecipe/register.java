@@ -21,12 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -93,7 +90,7 @@ public class register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    final boolean[] Iswrong = {true};
+                     boolean Iswrong =true;
 
 
 
@@ -104,37 +101,37 @@ public class register extends AppCompatActivity {
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else if(!checkarray(pass,passwordC)) {
                         password.setError("invaild leatter");
-                        Iswrong[0] = false;
+                        Iswrong = false;
                     }
                     //check name________________________________________________________________________________________
                     if(fname2.length()<6){
                         fname.setError("invield name");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else if(!checkarray(name,alphabet)){
                         fname.setError("invaild leatter");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 //check username____________________________________________________________________________________
                     if(username2.length()<6){
                         username.setError("invield name");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else  if (!checkarray(user,userc)){
                         username.setError("invield letter");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 //check username____________________________________________________________________________________
                     if (!isValidEmail(email2)){
                         email.setError("invield email");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 ////check if there some thing wrong_________________________________________________________________
-                    if (Iswrong[0]){
+                    if (Iswrong){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         myRef.child("email").setValue(DotToPlus(new StringBuilder(email2)));
