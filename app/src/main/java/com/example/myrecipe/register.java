@@ -93,7 +93,7 @@ public class register extends AppCompatActivity {
 
 
                     Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
-                    Query checkMail = (referenceE.orderByChild("email").equalTo(email2));
+                    Query checkMail = (referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2))));
 
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
