@@ -90,8 +90,9 @@ public class addP extends AppCompatActivity {
                     for (int i=0;i<SpicesName.length;i++){
                         intent.putExtra(SpicesName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
                     }
+                    intent.putExtra("spices",(String) getIntent().getSerializableExtra("spices"));
                 }
-                catch (Exception e){}
+                catch (Exception e){Toast.makeText(getApplicationContext(),"wrong!!!!!@!@!@!#$$#@!",Toast.LENGTH_SHORT).show();}
                 startActivity(intent);
 
 
@@ -107,8 +108,9 @@ public class addP extends AppCompatActivity {
                     for (int i=0;i<plantName.length;i++){
                         intentt.putExtra(plantName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
                     }
+                    intentt.putExtra("plant",(String) getIntent().getSerializableExtra("plant"));
                 }
-                catch (Exception e){}
+                catch (Exception e){Toast.makeText(getApplicationContext(),"wrooooooong!!!!!@!@!@!#$$#@!",Toast.LENGTH_SHORT).show();}
                 startActivity(intentt);
             }
         });

@@ -75,6 +75,7 @@ public class Ingredients extends AppCompatActivity {
                     for (int i=0;i<SpicesName.length;i++){
                         sp.putExtra(SpicesName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
                     }
+                    sp.putExtra("spices",(String) getIntent().getSerializableExtra("spices"));
                 }
                 catch (Exception e){}
                 sp.putExtra("plant",Wplant[0]);
