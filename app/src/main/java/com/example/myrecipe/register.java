@@ -95,36 +95,7 @@ public class register extends AppCompatActivity {
                 else {
                     final boolean[] Iswrong = {true};
 
-                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()){
-                                username.setError("username is already exist");
-                                Iswrong[0] =false;
-                            }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dsnapshot) {
-                            if (dsnapshot.exists()){
-                                username.setError("email is already exist");
-                                Iswrong[0] =false;
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
