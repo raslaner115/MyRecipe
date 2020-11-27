@@ -21,9 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -46,13 +49,6 @@ public class register extends AppCompatActivity {
         EditText username=findViewById(R.id.username);
         Button reg=findViewById(R.id.register);
         Propic=findViewById(R.id.ProPic);
-
-
-
-
-
-
-
 
         storage = FirebaseStorage.getInstance();
         mStorageRef=storage.getReference();
@@ -94,6 +90,41 @@ public class register extends AppCompatActivity {
 
                     Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
                     Query checkMail = (referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2))));
+
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        boolean Iswrong =true;
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                username.setError("username is already exist");
+                                Iswrong =false;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
+                        boolean Iswrong =true;
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dsnapshot) {
+                            if (dsnapshot.exists()){
+                                username.setError("email is already exist");
+                                Iswrong =false;
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
 
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
