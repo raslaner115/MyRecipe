@@ -21,8 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -46,6 +50,30 @@ public class register extends AppCompatActivity {
         Button reg=findViewById(R.id.register);
         Propic=findViewById(R.id.ProPic);
 
+
+
+        String email2 = email.getText().toString();
+        String fname2 = fname.getText().toString();
+        String password2 = password.getText().toString();
+        String username2 = username.getText().toString();
+
+        char[] alphabet = "abcdefghijklmnopq rstuvwxyzا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
+        char[] passwordC = "abcdefghijklmnopq rstuvwxyz1234567890!@#$%&".toCharArray();
+        char[] userc = "abcdefghijklmnopq.rstuvwxyz1234567890_-".toCharArray();
+
+        char[] user = username2.toCharArray();
+        char[] name = fname2.toCharArray();
+        char[] pass = password2.toCharArray();
+        char[] mail = email2.toCharArray();
+
+        DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
+        DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(email2);
+
+
+        Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
+        Query checkMail = (referenceE.orderByChild("email").equalTo(email2));
+
+
         storage = FirebaseStorage.getInstance();
         mStorageRef=storage.getReference();
 
@@ -60,25 +88,44 @@ public class register extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(!isConnected(this)){
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    String email2 = email.getText().toString();
-                    String fname2 = fname.getText().toString();
-                    String password2 = password.getText().toString();
-                    String username2 = username.getText().toString();
+                    final boolean[] Iswrong = {true};
 
-                    char[] alphabet = "abcdefghijklmnopq rstuvwxyzا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
-                    char[] passwordC = "abcdefghijklmnopq rstuvwxyz1234567890!@#$%&".toCharArray();
-                    char[] userc = "abcdefghijklmnopq.rstuvwxyz1234567890_-".toCharArray();
+                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                username.setError("username is already exist");
+                                Iswrong[0] =false;
+                            }
+                        }
 
-                    char[] user = username2.toCharArray();
-                    char[] name = fname2.toCharArray();
-                    char[] pass = password2.toCharArray();
-                    char[] mail = email2.toCharArray();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    int count_wrong=0;
+                        }
+                    });
+
+                    checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dsnapshot) {
+                            if (dsnapshot.exists()){
+                                username.setError("email is already exist");
+                                Iswrong[0] =false;
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
@@ -86,35 +133,37 @@ public class register extends AppCompatActivity {
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
-                        count_wrong++;}
-                    else if(!checkarray(pass,passwordC)){
+                        Iswrong[0] =false;
+                    }
+                    else if(!checkarray(pass,passwordC)) {
                         password.setError("invaild leatter");
-                        count_wrong++;}
-//check name________________________________________________________________________________________
+                        Iswrong[0] = false;
+                    }
+                    //check name________________________________________________________________________________________
                     if(fname2.length()<6){
                         fname.setError("invield name");
-                        count_wrong++;
+                        Iswrong[0] =false;
                     }
                     else if(!checkarray(name,alphabet)){
                         fname.setError("invaild leatter");
-                        count_wrong++;
+                        Iswrong[0] =false;
                     }
 //check username____________________________________________________________________________________
                     if(username2.length()<6){
                         username.setError("invield name");
-                        count_wrong++;
+                        Iswrong[0] =false;
                     }
                     else  if (!checkarray(user,userc)){
                         username.setError("invield letter");
-                        count_wrong++;
+                        Iswrong[0] =false;
                     }
 //check username____________________________________________________________________________________
                     if (!isValidEmail(email2)){
                         email.setError("invield email");
-                          count_wrong++;
-                      }
+                        Iswrong[0] =false;
+                    }
 ////check if there some thing wrong_________________________________________________________________
-                    if (count_wrong==0){
+                    if (Iswrong[0]){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         myRef.child("email").setValue(DotToPlus(new StringBuilder(email2)));
@@ -139,13 +188,13 @@ public class register extends AppCompatActivity {
 
 //open galery_______________________________________________________________________________________
 
-private void SelectAPic() {
-    Intent i=new Intent();
-    i.setType("image/*");
-    i.setAction(i.ACTION_GET_CONTENT);
-    startActivityForResult(i,1);
-}
-//change the pic____________________________________________________________________________________
+    private void SelectAPic() {
+        Intent i=new Intent();
+        i.setType("image/*");
+        i.setAction(i.ACTION_GET_CONTENT);
+        startActivityForResult(i,1);
+    }
+    //change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -172,7 +221,7 @@ private void SelectAPic() {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                     Toast.makeText(getApplicationContext(),"fail to upload the picture",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"fail to upload the picture",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -202,8 +251,8 @@ private void SelectAPic() {
 //helper function check email_______________________________________________________________________
 
     public static boolean isValidEmail(CharSequence target) {
-    return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-}
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
 
 //change the dot in the email to plus to let it sign in database firebase___________________________
 

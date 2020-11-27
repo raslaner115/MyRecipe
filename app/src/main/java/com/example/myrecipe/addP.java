@@ -114,8 +114,7 @@ public class addP extends AppCompatActivity {
                 startActivity(intentt);
             }
         });
-
-         pic=findViewById(R.id.pic);
+         pic=findViewById(R.id.pic);       
 
         pic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +124,7 @@ public class addP extends AppCompatActivity {
         });
 
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(addP.this, addRecipe.class);

@@ -73,7 +73,7 @@ public class Spices extends AppCompatActivity  {
                  }
                  try {
                      for (int i=0;i<plantName.length;i++){
-                         sp.putExtra(plantName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
+                         sp.putExtra(plantName[i],(String) getIntent().getSerializableExtra(plantName[i]));
                      }
                      sp.putExtra("plant",(String) getIntent().getSerializableExtra("plant"));
 
