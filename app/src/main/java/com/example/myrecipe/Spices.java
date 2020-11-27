@@ -19,7 +19,7 @@ public class Spices extends AppCompatActivity  {
 
 
 
-
+        String[] plantName={"rice","onion","carrot","potatoِ","Eggplant","zucchini","corn","Tomato"};
         Boolean IsSalt=false,IsPepper=false,IsCinnamon=false,IsCarom=false,IsGinger=false,IsCloves=false;
 
         Button Carom = findViewById(R.id.Carom);
@@ -62,20 +62,22 @@ public class Spices extends AppCompatActivity  {
          save.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
+                 Intent sp=new Intent(Spices.this,addP.class);
+                 sp.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                  for (int i=0;i<spices.length;i++){
                      if (IsSpices[i]){
                          WSpices[0]=WSpices[0]+"  "+SpicesName[i];
                      }
+                     sp.putExtra(SpicesName[i],IsSpices[0].toString());
+
                  }
-                 Intent sp=new Intent(Spices.this,addP.class);
+                 try {
+                     for (int i=0;i<plantName.length;i++){
+                         sp.putExtra(plantName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
+                     }
+                 }
+                 catch (Exception e){}
                  sp.putExtra("spices",WSpices[0]);
-                 sp.putExtra("IsSalt",IsSpices[0].toString());
-                 sp.putExtra("IsPepper",IsSpices[1].toString());
-                 sp.putExtra("IsCinnamon",IsSpices[2].toString());
-                 sp.putExtra("IsCloves",IsSpices[3].toString());
-                 sp.putExtra("IsGinger",IsSpices[4].toString());
-                 sp.putExtra("IsCarom",IsSpices[5].toString());
-                 sp.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                  startActivity(sp);
              }
          });

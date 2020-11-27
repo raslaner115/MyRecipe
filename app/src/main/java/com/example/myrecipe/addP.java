@@ -36,6 +36,10 @@ public class addP extends AppCompatActivity {
          String WSpices = (String) getIntent().getSerializableExtra("spices");
         WS.setText(WSpices);
 
+        TextView Wp=findViewById(R.id.Ingredients2);
+        String Wplant = (String) getIntent().getSerializableExtra("plant");
+        Wp.setText(Wplant);
+
         EditText Rname=findViewById(R.id.name);
         TextView Ingredient=findViewById(R.id.Ingredients);
         TextView Spice=findViewById(R.id.Spices);
@@ -45,9 +49,8 @@ public class addP extends AppCompatActivity {
         DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
         DatabaseReference myRefA = database.getReference("all recipes");
 
-
-        String[] isSpices={(String) getIntent().getSerializableExtra("IsSalt"),(String) getIntent().getSerializableExtra("IsPepper"),(String) getIntent().getSerializableExtra("IsCinnamon"),(String) getIntent().getSerializableExtra("IsCloves"),(String) getIntent().getSerializableExtra("IsGinger"),(String) getIntent().getSerializableExtra("IsCarom")};
-        String[] SName={"salt","pepper","cinnamon","cloves","ginger","carom"};
+        String[] plantName={"rice","onion","carrot","potatoِ","Eggplant","zucchini","corn","Tomato"};
+        String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +58,23 @@ public class addP extends AppCompatActivity {
                 if ((Rname.getText().toString()).length()==0){
                     Rname.setError("name can't be empty");
                 }
+                else if((Wp.toString().length()==0)&&(WS.toString().length()==0)){
+                    Ingredient.setError("at least one of them");
+                    Spice.setError("at least one of them");
+
+                }
                 else {
-                    for (int i=0;i<isSpices.length;i++) {
-                        myRefU.child("my recipe").child(Rname.getText().toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
-                        myRefA.child(Rname.getText().toString()).child("spices").child(SName[i]).setValue(isSpices[i]);
+                    for (int i=0;i<SpicesName.length;i++) {
+                        myRefU.child("my recipe").child(Rname.getText().toString()).child("spices").child(SpicesName[i]).setValue((String) getIntent().getSerializableExtra(SpicesName[i]));
+                        myRefA.child(Rname.getText().toString()).child("spices").child(SpicesName[i]).setValue((String) getIntent().getSerializableExtra(SpicesName[i]));
                     }
+                    for (int i=0;i<plantName.length;i++) {
+                        myRefU.child("my recipe").child(Rname.getText().toString()).child("Ingredients").child(plantName[i]).setValue((String) getIntent().getSerializableExtra(plantName[i]));
+                        myRefA.child(Rname.getText().toString()).child("Ingredients").child(plantName[i]).setValue((String) getIntent().getSerializableExtra(plantName[i]));
+                    }
+                    Intent intent = new Intent(addP.this, addRecipe.class);
+                    intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+                    startActivity(intent);
                  }
              }
         });
@@ -69,7 +84,17 @@ public class addP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(addP.this,Ingredients.class));
+                Intent intent = new Intent(addP.this, Ingredients.class);
+                intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+                try {
+                    for (int i=0;i<SpicesName.length;i++){
+                        intent.putExtra(SpicesName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
+                    }
+                }
+                catch (Exception e){}
+                startActivity(intent);
+
+
             }
         });
 
@@ -78,6 +103,12 @@ public class addP extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentt=new Intent(addP.this, Spices.class);
                 intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                try {
+                    for (int i=0;i<plantName.length;i++){
+                        intentt.putExtra(plantName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
+                    }
+                }
+                catch (Exception e){}
                 startActivity(intentt);
             }
         });
@@ -94,8 +125,9 @@ public class addP extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-    startActivity(new Intent(addP.this,addRecipe.class));
-    }
+        Intent intent = new Intent(addP.this, addRecipe.class);
+        intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+        startActivity(intent);    }
 //__________________________________________________________________________________________________
     private void SelectAPic() {
         Intent i=new Intent();
@@ -113,10 +145,6 @@ public class addP extends AppCompatActivity {
         if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
             pic.setImageURI(imageuri);
-            pic.setMinimumHeight(180);
-            pic.setMinimumWidth(180);
-            pic.setMaxHeight(180);
-            pic.setMaxWidth(180);
         }
     }
 

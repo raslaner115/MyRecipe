@@ -27,4 +27,8 @@ public class addRecipe extends AppCompatActivity {
             }
         });
     }
+
+    public void onBackPressed() {
+        startActivity(new Intent(addRecipe.this,Main.class));
+    }
 }
