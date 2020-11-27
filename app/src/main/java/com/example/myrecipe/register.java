@@ -49,26 +49,9 @@ public class register extends AppCompatActivity {
 
 
 
-        String email2 = email.getText().toString();
-        String fname2 = fname.getText().toString();
-        String password2 = password.getText().toString();
-        String username2 = username.getText().toString();
-
-        char[] alphabet = "abcdefghijklmnopq rstuvwxyzا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
-        char[] passwordC = "abcdefghijklmnopq rstuvwxyz1234567890!@#$%&".toCharArray();
-        char[] userc = "abcdefghijklmnopq.rstuvwxyz1234567890_-".toCharArray();
-
-        char[] user = username2.toCharArray();
-        char[] name = fname2.toCharArray();
-        char[] pass = password2.toCharArray();
-        char[] mail = email2.toCharArray();
-
-        DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
-        DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(email2);
 
 
-        Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
-        Query checkMail = (referenceE.orderByChild("email").equalTo(email2));
+
 
 
         storage = FirebaseStorage.getInstance();
@@ -90,9 +73,27 @@ public class register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"there is no internet conniction ", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    String email2 = email.getText().toString();
+                    String fname2 = fname.getText().toString();
+                    String password2 = password.getText().toString();
+                    String username2 = username.getText().toString();
+
+                    char[] alphabet = "abcdefghijklmnopq rstuvwxyzا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
+                    char[] passwordC = "abcdefghijklmnopq rstuvwxyz1234567890!@#$%&".toCharArray();
+                    char[] userc = "abcdefghijklmnopq.rstuvwxyz1234567890_-".toCharArray();
+
+                    char[] user = username2.toCharArray();
+                    char[] name = fname2.toCharArray();
+                    char[] pass = password2.toCharArray();
+                    char[] mail = email2.toCharArray();
+
                      boolean Iswrong =true;
+                    DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
+                    DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(email2);
 
 
+                    Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
+                    Query checkMail = (referenceE.orderByChild("email").equalTo(email2));
 
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
