@@ -67,7 +67,7 @@ public class Ingredients extends AppCompatActivity {
                 sp.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                 for (int i=0;i<plant.length;i++){
                     if (Isplant[i]){
-                        Wplant[0]=Wplant[0]+"  "+Wplant[i];
+                        Wplant[0]=Wplant[0]+"  "+plantName[i];
                     }
                     sp.putExtra(plantName[i],Isplant[i].toString());
                 }

@@ -63,6 +63,7 @@ public class Main extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
+            startActivity(new Intent(Main.this,Login.class));
             super.onBackPressed();
             return;
         }
