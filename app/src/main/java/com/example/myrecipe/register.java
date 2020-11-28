@@ -83,7 +83,7 @@ public class register extends AppCompatActivity {
                     char[] pass = password2.toCharArray();
                     char[] mail = email2.toCharArray();
 
-                     boolean Iswrong =true;
+                    final boolean[] Iswrong = {true};
                     DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
                     DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(DotToPlus(new StringBuilder(email2)));
 
@@ -92,12 +92,11 @@ public class register extends AppCompatActivity {
                     Query checkMail = referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2)));
 
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        boolean Iswrong =true;
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()){
                                 username.setError("username is already exist");
-                                Iswrong =false;
+                                Iswrong[0] =false;
                             }
                         }
 
@@ -108,12 +107,11 @@ public class register extends AppCompatActivity {
                     });
 
                     checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
-                        boolean Iswrong =true;
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dsnapshot) {
                             if (dsnapshot.exists()){
                                 username.setError("email is already exist");
-                                Iswrong =false;
+                                Iswrong[0] =false;
 
                             }
                         }
@@ -133,37 +131,37 @@ public class register extends AppCompatActivity {
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
                     else if(!checkarray(pass,passwordC)) {
                         password.setError("invaild leatter");
-                        Iswrong = false;
+                        Iswrong[0] = false;
                     }
                     //check name________________________________________________________________________________________
                     if(fname2.length()<6){
                         fname.setError("invield name");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
                     else if(!checkarray(name,alphabet)){
                         fname.setError("invaild leatter");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
 //check username____________________________________________________________________________________
                     if(username2.length()<6){
                         username.setError("invield name");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
                     else  if (!checkarray(user,userc)){
                         username.setError("invield letter");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
 //check username____________________________________________________________________________________
                     if (!isValidEmail(email2)){
                         email.setError("invield email");
-                        Iswrong =false;
+                        Iswrong[0] =false;
                     }
 ////check if there some thing wrong_________________________________________________________________
-                    if (Iswrong){
+                    if (Iswrong[0]){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
                         myRef.child("email").setValue(DotToPlus(new StringBuilder(email2)));
