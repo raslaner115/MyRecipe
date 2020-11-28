@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                                             Intent intent = new Intent(Login.this, Main.class);
                                             intent.putExtra("username", usernameFromDB);
                                             intent.putExtra("name", nameFromDB);
-                                            intent.putExtra("email",PlusToDot(new StringBuilder(emailFromDB)));
+                                            intent.putExtra("email",USER_EMAIL(emailFromDB));
                                             startActivity(intent);
                                         } else {
                                             password.setError("Wrong Password");
@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(emailS);
+                                        Query checkmail = reference.orderByChild("email").equalTo(USER_EMAIL(emailS));
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
@@ -143,23 +143,11 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-    //__________________________________________________________________________________________________
+//__________________________________________________________________________________________________
     private boolean isConnected(View.OnClickListener onClickListener) {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
-//__________________________________________________________________________________________________
-public String PlusToDot(StringBuilder email){
-    String Semail=email.toString();
-    char[] CSemail=Semail.toCharArray();
-
-    for (int i=0;i<CSemail.length;i++){
-        if (CSemail[i]=='+'){
-            email.setCharAt(i,'.');
-        }
-    }
-    return email.toString();
-}
 //__________________________________________________________________________________________________
     public String EMAIL_USER(String eu){
         char[] EU=eu.toCharArray();
@@ -171,6 +159,21 @@ public String PlusToDot(StringBuilder email){
             }
             if (EU[i]==':'){
                 JUser=true;
+            }
+        }
+        return collector.toString();
+    }
+//__________________________________________________________________________________________________
+    public String USER_EMAIL(String eu){
+        char[] EU=eu.toCharArray();
+        boolean JUser=true;
+        char[] collector=new char[EU.length];
+        for (int i=0;i< EU.length;i++){
+            if (EU[i]==':'){
+                JUser=false;
+            }
+            if (JUser){
+                collector[i]=EU[i];
             }
         }
         return collector.toString();
