@@ -66,7 +66,7 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(!isConnected(this)){
-                    Toast.makeText(getApplicationContext(),"there is no internet ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"there is no internet connection" , Toast.LENGTH_LONG).show();
                 }
                 else {
                     String email2 = email.getText().toString();
