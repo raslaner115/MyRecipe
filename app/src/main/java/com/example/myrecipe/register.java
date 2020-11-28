@@ -85,11 +85,11 @@ public class register extends AppCompatActivity {
 
                      boolean Iswrong =true;
                     DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
-                    DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(email2);
+                    DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(DotToPlus(new StringBuilder(email2)));
 
 
-                    Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
-                    Query checkMail = (referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2))));
+                    Query checkUser = referenceU.orderByChild("username").equalTo(username2);
+                    Query checkMail = referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2)));
 
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         boolean Iswrong =true;
