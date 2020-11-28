@@ -94,11 +94,12 @@ public class Login extends AppCompatActivity {
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
                                                 if (snapshotE.exists()) {
                                                     String key = snapshotE.getKey();
-                                                    String dataKeys = "";
+                                                    String dataKeys="";
 
                                                     for (DataSnapshot child : snapshotE.getChildren()) {
-                                                        dataKeys = dataKeys + child.getKey() + "";
+                                                        dataKeys =child.getKey();
                                                     }
+                                                    Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_LONG).show();
                                                     String nameFromDB = dataSnapshot.child(dataKeys).child("name").getValue(String.class);
                                                     String passwordFromDB = dataSnapshot.child(dataKeys).child("password").getValue(String.class);
                                                     String emailFromDB = dataSnapshot.child(dataKeys).child("email").getValue(String.class);
