@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Spices"></activity>
+        <activity android:name=".MyRecipes"></activity>
+        <activity android:name=".Spices" />
         <activity android:name=".Ingredients" />
         <activity android:name=".addP" />
         <activity android:name=".addRecipe" />

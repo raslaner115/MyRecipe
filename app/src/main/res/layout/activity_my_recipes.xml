@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyRecipes">
+
+    <ImageView
+        android:id="@+id/recipeIMG"
+        android:layout_width="187dp"
+        android:layout_height="172dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/background"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/recipeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="221dp"
+        android:layout_marginLeft="221dp"
+        android:layout_marginBottom="591dp"
+        android:layout_toEndOf="@+id/recipeIMG"
+        android:layout_toRightOf="@+id/recipeIMG"
+        android:text=""
+        android:textSize="22dp"
+        tools:layout_editor_absoluteX="272dp"
+        tools:layout_editor_absoluteY="59dp" />
+
+    <TextView
+        android:id="@+id/spice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recipeIMG"
+        android:layout_marginTop="65dp"
+        android:text="spice:"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/Ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spice"
+        android:layout_marginTop="14dp"
+        android:text="Ingredients:"
+        android:textSize="22dp" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="71dp"
+        android:layout_height="68dp"
+        android:layout_below="@+id/Ingredients"
+        android:layout_marginTop="281dp"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/delete"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/edit"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="-1dp"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/edit"
+        tools:ignore="VectorDrawableCompat" />
+</RelativeLayout>
