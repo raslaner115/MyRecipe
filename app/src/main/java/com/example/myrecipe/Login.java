@@ -88,15 +88,16 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(DotToPlus(new StringBuilder(emailS)));
+                                        Query checkmail = reference.orderByChild("email").equalTo(emailS);
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
                                                 if (snapshotE.exists()) {
-                                                    String nameFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("name").getValue(String.class);
-                                                    String passwordFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("password").getValue(String.class);
-                                                    String emailFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("email").getValue(String.class);
-                                                    String usernameFromDB = snapshotE.child(DotToPlus(new StringBuilder(emailS))).child("username").getValue(String.class);
+
+                                                    String nameFromDB = snapshotE.child(EMAIL_USER(emailS)).child("name").getValue(String.class);
+                                                    String passwordFromDB = snapshotE.child(EMAIL_USER(emailS)).child("password").getValue(String.class);
+                                                    String emailFromDB = snapshotE.child(EMAIL_USER(emailS)).child("email").getValue(String.class);
+                                                    String usernameFromDB = snapshotE.child(EMAIL_USER(emailS)).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
 
@@ -159,19 +160,22 @@ public String PlusToDot(StringBuilder email){
     }
     return email.toString();
 }
-
-    public String DotToPlus(StringBuilder email){
-
-        String Semail=email.toString();
-        char[] CSemail=Semail.toCharArray();
-
-        for (int i=0;i<CSemail.length;i++){
-            if (CSemail[i]=='.'){
-                email.setCharAt(i,'+');
+//__________________________________________________________________________________________________
+    public String EMAIL_USER(String eu){
+        char[] EU=eu.toCharArray();
+        boolean JUser=false;
+        char[] collector=new char[EU.length];
+        for (int i=0;i< EU.length;i++){
+            if (JUser){
+                collector[i]=EU[i];
+            }
+            if (EU[i]==':'){
+                JUser=true;
             }
         }
-        return email.toString();
+        return collector.toString();
     }
+//__________________________________________________________________________________________________
     public void onBackPressed() {
         System.exit(1);
     }

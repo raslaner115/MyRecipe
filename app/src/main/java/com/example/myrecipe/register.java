@@ -21,12 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,8 +46,7 @@ public class register extends AppCompatActivity {
         Button reg=findViewById(R.id.register);
         Propic=findViewById(R.id.ProPic);
 
-        storage = FirebaseStorage.getInstance();
-        mStorageRef=storage.getReference();
+        mStorageRef=FirebaseStorage.getInstance().getReference();
 
 //__________________________________________________________________________________________________
         Propic.setOnClickListener(new View.OnClickListener() {
@@ -83,93 +78,51 @@ public class register extends AppCompatActivity {
                     char[] pass = password2.toCharArray();
                     char[] mail = email2.toCharArray();
 
-                    final boolean[] Iswrong = {true};
-                    DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
-                    DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(DotToPlus(new StringBuilder(email2)));
+                     boolean Iswrong = true;
 
-                    Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
-                    Query checkMail = referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2)));
-
-                    checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()){
-                                username.setError("username is already exist");
-                                Iswrong[0] =false;
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dsnapshot) {
-                            if (dsnapshot.exists()){
-                                email.setError("email is already exist");
-                                Iswrong[0] =false;
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
 //connect to the firebase___________________________________________________________________________
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(username2);
-                    DatabaseReference myRefE = database.getReference(DotToPlus(new StringBuilder(email2)));
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else if(!checkarray(pass,passwordC)) {
                         password.setError("invaild leatter");
-                        Iswrong[0] = false;
+                        Iswrong = false;
                     }
                     //check name________________________________________________________________________________________
                     if(fname2.length()<6){
                         fname.setError("invield name");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else if(!checkarray(name,alphabet)){
                         fname.setError("invaild leatter");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 //check username____________________________________________________________________________________
                     if(username2.length()<6){
                         username.setError("invield name");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
                     else  if (!checkarray(user,userc)){
                         username.setError("invield letter");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 //check username____________________________________________________________________________________
                     if (!isValidEmail(email2)){
                         email.setError("invield email");
-                        Iswrong[0] =false;
+                        Iswrong =false;
                     }
 ////check if there some thing wrong_________________________________________________________________
-                    if (Iswrong[0]){
+                    if (Iswrong){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
-                        myRef.child("email").setValue(DotToPlus(new StringBuilder(email2)));
+                        myRef.child("email").setValue((email2+":"+username2));
                         myRef.child("username").setValue(username2);
                         uploadpic(username2);
-
-                        myRefE.child("name").setValue(fname2);
-                        myRefE.child("password").setValue(password2);
-                        myRefE.child("email").setValue(DotToPlus(new StringBuilder(email2)));
-                        myRefE.child("username").setValue(username2);
-                        uploadpic(DotToPlus(new StringBuilder(email2)));
 
                         startActivity(new Intent(register.this,Login.class));
                     }}}
@@ -247,20 +200,5 @@ public class register extends AppCompatActivity {
 
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
-//change the dot in the email to plus to let it sign in database firebase___________________________
-
-    public String DotToPlus(StringBuilder email){
-
-        String Semail=email.toString();
-        char[] CSemail=Semail.toCharArray();
-
-        for (int i=0;i<CSemail.length;i++){
-            if (CSemail[i]=='.'){
-                email.setCharAt(i,'+');
-            }
-        }
-        return email.toString();
     }
 }
