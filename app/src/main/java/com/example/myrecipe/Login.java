@@ -113,7 +113,8 @@ public class Login extends AppCompatActivity {
                                                     } else {
                                                         password.setError("Wrong Password");
                                                         password.requestFocus();
-                                                    }                                                }
+                                                    }
+                                                }
                                                 else {
                                                     email.setError("user not exist");
                                                 }
