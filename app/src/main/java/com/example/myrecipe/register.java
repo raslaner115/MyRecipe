@@ -87,14 +87,13 @@ public class register extends AppCompatActivity {
                     DatabaseReference referenceU = FirebaseDatabase.getInstance().getReference(username2);
                     DatabaseReference referenceE = FirebaseDatabase.getInstance().getReference(DotToPlus(new StringBuilder(email2)));
 
-
-                    Query checkUser = referenceU.orderByChild("username").equalTo(username2);
+                    Query checkUser = (referenceU.orderByChild("username").equalTo(username2));
                     Query checkMail = referenceE.orderByChild("email").equalTo(DotToPlus(new StringBuilder(email2)));
 
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()){
+                            if (!snapshot.exists()){
                                 username.setError("username is already exist");
                                 Iswrong[0] =false;
                             }
@@ -109,7 +108,7 @@ public class register extends AppCompatActivity {
                     checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dsnapshot) {
-                            if (dsnapshot.exists()){
+                            if (!dsnapshot.exists()){
                                 username.setError("email is already exist");
                                 Iswrong[0] =false;
 
