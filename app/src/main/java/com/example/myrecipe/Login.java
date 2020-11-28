@@ -92,30 +92,15 @@ public class Login extends AppCompatActivity {
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
-                                                if (USER_EMAIL(snapshotE.getKey()).equals(emailS)) {
+                                                String key = snapshotE.getKey();
+                                                String dataKeys = "";
 
-                                                    String nameFromDB = snapshotE.child(EMAIL_USER(emailS)).child("name").getValue(String.class);
-                                                    String passwordFromDB = snapshotE.child(EMAIL_USER(emailS)).child("password").getValue(String.class);
-                                                    String emailFromDB = snapshotE.child(EMAIL_USER(emailS)).child("email").getValue(String.class);
-                                                    String usernameFromDB = snapshotE.child(EMAIL_USER(emailS)).child("username").getValue(String.class);
-
-                                                    if (passwordFromDB.equals(passwordS)) {
-
-                                                        Intent intent = new Intent(Login.this, Main.class);
-                                                        intent.putExtra("email", emailS);
-                                                        intent.putExtra("name", nameFromDB);
-                                                        intent.putExtra("username",usernameFromDB);
-                                                        startActivity(intent);
-                                                    }
-                                                    else{
-                                                        password.setError("Wrong password");
-                                                        password.requestFocus();
-                                                    }
+                                                for (DataSnapshot child : snapshotE.getChildren()) {
+                                                    //Object object = child.getKey();
+                                                    dataKeys = dataKeys + child.getKey() + "";
                                                 }
-                                                else{
-                                                    email.setError("no such user exist");
-                                                    email.requestFocus();
-                                                }
+                                                Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_SHORT).show();
+
                                             }
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
