@@ -93,10 +93,11 @@ public class Login extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
                                                 if (snapshotE.exists()) {
+                                                    String key = snapshotE.getKey();
                                                     String dataKeys = "";
 
                                                     for (DataSnapshot child : snapshotE.getChildren()) {
-                                                        dataKeys = child.getKey();
+                                                        dataKeys = dataKeys + child.getKey() + "";
                                                     }
                                                     Toast.makeText(getApplicationContext(), dataKeys, Toast.LENGTH_SHORT).show();
                                                 }
