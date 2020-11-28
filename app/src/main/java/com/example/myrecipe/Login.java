@@ -88,11 +88,11 @@ public class Login extends AppCompatActivity {
                                         }
                                     }
                                     else {
-                                        Query checkmail = reference.orderByChild("email").equalTo(USER_EMAIL(emailS));
+                                        Query checkmail = reference.orderByChild("email").equalTo(emailS);
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
-                                                if (snapshotE.exists()) {
+                                                if (USER_EMAIL(snapshotE.getKey()).equals(emailS)) {
 
                                                     String nameFromDB = snapshotE.child(EMAIL_USER(emailS)).child("name").getValue(String.class);
                                                     String passwordFromDB = snapshotE.child(EMAIL_USER(emailS)).child("password").getValue(String.class);
