@@ -120,7 +120,7 @@ public class register extends AppCompatActivity {
                     if (Iswrong){
                         myRef.child("name").setValue(fname2);
                         myRef.child("password").setValue(password2);
-                        myRef.child("email").setValue((email2+":"+username2));
+                        myRef.child("email").setValue((email2));
                         myRef.child("username").setValue(username2);
                         uploadpic(username2);
 

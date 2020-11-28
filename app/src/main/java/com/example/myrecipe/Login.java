@@ -92,15 +92,11 @@ public class Login extends AppCompatActivity {
                                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshotE) {
-                                                String key = snapshotE.getKey();
-                                                String dataKeys = "";
+                                                if (snapshotE.exists()) {
+                                                    String key = snapshotE.getKey();
 
-                                                for (DataSnapshot child : snapshotE.getChildren()) {
-                                                    //Object object = child.getKey();
-                                                    dataKeys = dataKeys + child.getKey() + "";
+                                                    Toast.makeText(getApplicationContext(), key, Toast.LENGTH_SHORT).show();
                                                 }
-                                                Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_SHORT).show();
-
                                             }
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
