@@ -99,11 +99,11 @@ public class Login extends AppCompatActivity {
                                                     for (DataSnapshot child : snapshotE.getChildren()) {
                                                         dataKeys =child.getKey();
                                                     }
-                                                    Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_LONG).show();
-                                                    String nameFromDB = dataSnapshot.child(dataKeys).child("name").getValue(String.class);
-                                                    String passwordFromDB = dataSnapshot.child(dataKeys).child("password").getValue(String.class);
-                                                    String emailFromDB = dataSnapshot.child(dataKeys).child("email").getValue(String.class);
-                                                    String usernameFromDB = dataSnapshot.child(dataKeys).child("username").getValue(String.class);
+                                                     Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_LONG).show();
+                                                    String nameFromDB = snapshotE.child(dataKeys).child("name").getValue(String.class);
+                                                    String passwordFromDB = snapshotE.child(dataKeys).child("password").getValue(String.class);
+                                                    String emailFromDB = snapshotE.child(dataKeys).child("email").getValue(String.class);
+                                                    String usernameFromDB = snapshotE.child(dataKeys).child("username").getValue(String.class);
 
                                                     if (passwordFromDB.equals(passwordS)) {
                                                         Intent intent = new Intent(Login.this, Main.class);
