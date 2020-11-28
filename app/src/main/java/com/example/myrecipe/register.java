@@ -93,7 +93,7 @@ public class register extends AppCompatActivity {
                     checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (!snapshot.exists()){
+                            if (snapshot.exists()){
                                 username.setError("username is already exist");
                                 Iswrong[0] =false;
                             }
@@ -108,8 +108,8 @@ public class register extends AppCompatActivity {
                     checkMail.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dsnapshot) {
-                            if (!dsnapshot.exists()){
-                                username.setError("email is already exist");
+                            if (dsnapshot.exists()){
+                                email.setError("email is already exist");
                                 Iswrong[0] =false;
 
                             }
