@@ -39,8 +39,8 @@
         android:id="@+id/Spices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Ingredients"
-        android:layout_marginTop="46dp"
+        android:layout_below="@+id/Ingredients2"
+        android:layout_marginTop="13dp"
         android:text="spices:"
         android:textSize="22dp" />
 
@@ -56,36 +56,16 @@
         android:inputType="textPersonName"
         android:textSize="22dp" />
 
+
     <Button
         android:id="@+id/save"
-        android:layout_width="391dp"
-        android:layout_height="81dp"
-        android:layout_below="@+id/Spices"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="141dp"
-        android:layout_marginBottom="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:layout_below="@+id/kind"
+        android:layout_marginTop="175dp"
         android:background="@drawable/button"
         android:text="save"
         android:textSize="22dp" />
-
-    <TextView
-        android:id="@+id/WSpices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="276dp"
-        android:layout_toEndOf="@+id/Spices"
-        android:layout_toRightOf="@+id/Spices"
-        android:text=""
-        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/Ingredients2"
@@ -99,5 +79,33 @@
         android:layout_toRightOf="@+id/Ingredients"
         android:text=""
         android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/WSpices"
+        android:text=""
+        android:textSize="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Spices"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="-20dp"
+        android:layout_toEndOf="@+id/Spices"
+        android:layout_toRightOf="@+id/Spices"
+         />
+
+    <Spinner
+        android:id="@+id/kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/WSpices"
+        android:layout_marginTop="33dp" />
+
+    <Spinner
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/WSpices"
+        android:layout_marginTop="66dp" />
 
 </RelativeLayout>

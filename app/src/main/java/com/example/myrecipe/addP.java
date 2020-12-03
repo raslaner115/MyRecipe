@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,10 @@ public class addP extends AppCompatActivity {
         String Wplant = (String) getIntent().getSerializableExtra("plant");
         Wp.setText(Wplant);
 
+        Spinner kind =findViewById(R.id.kind);
+        Spinner country =findViewById(R.id.country);
+
+
         EditText Rname=findViewById(R.id.name);
         TextView Ingredient=findViewById(R.id.Ingredients);
         TextView Spice=findViewById(R.id.Spices);
@@ -51,6 +57,16 @@ public class addP extends AppCompatActivity {
 
         String[] plantName={"rice","onion","carrot","potatoِ","Eggplant","zucchini","corn","Tomato"};
         String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
+
+        ArrayAdapter<CharSequence> kinds = ArrayAdapter.createFromResource(this,
+                R.array.kind_array, android.R.layout.simple_spinner_item);
+        kinds.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        kind.setAdapter(kinds);
+
+        ArrayAdapter<CharSequence> countries = ArrayAdapter.createFromResource(this,
+                R.array.countries_array, android.R.layout.simple_spinner_item);
+        countries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        country.setAdapter(countries);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +88,8 @@ public class addP extends AppCompatActivity {
                         myRefU.child("my recipe").child(Rname.getText().toString()).child("Ingredients").child(plantName[i]).setValue((String) getIntent().getSerializableExtra(plantName[i]));
                         myRefA.child(Rname.getText().toString()).child("Ingredients").child(plantName[i]).setValue((String) getIntent().getSerializableExtra(plantName[i]));
                     }
+                    myRefU.child("my recipe").child(Rname.getText().toString()).child("kinds").setValue(kind.getSelectedItem().toString());
+                    myRefU.child("my recipe").child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());;
                     Intent intent = new Intent(addP.this, addRecipe.class);
                     intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
                     startActivity(intent);
@@ -80,23 +98,20 @@ public class addP extends AppCompatActivity {
         });
 
 
-        Ingredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Ingredient.setOnClickListener(v -> {
 
-                Intent intent = new Intent(addP.this, Ingredients.class);
-                intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
-                try {
-                    for (int i=0;i<SpicesName.length;i++){
-                        intent.putExtra(SpicesName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
-                    }
-                    intent.putExtra("spices",(String) getIntent().getSerializableExtra("spices"));
+            Intent intent = new Intent(addP.this, Ingredients.class);
+            intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+            try {
+                for (int i=0;i<SpicesName.length;i++){
+                    intent.putExtra(SpicesName[i],(String) getIntent().getSerializableExtra(SpicesName[i]));
                 }
-                catch (Exception e){Toast.makeText(getApplicationContext(),"wrong!!!!!@!@!@!#$$#@!",Toast.LENGTH_SHORT).show();}
-                startActivity(intent);
-
-
+                intent.putExtra("spices",(String) getIntent().getSerializableExtra("spices"));
             }
+            catch (Exception e){Toast.makeText(getApplicationContext(),"wrong!!!!!@!@!@!#$$#@!",Toast.LENGTH_SHORT).show();}
+            startActivity(intent);
+
+
         });
 
         Spice.setOnClickListener(new View.OnClickListener() {

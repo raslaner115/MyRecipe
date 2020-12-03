@@ -7,8 +7,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,27 +32,24 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
         ImageView addB=findViewById(R.id.addB);
 
-        final int[] i = {0,100};
-        final String[] childs=new String[i[1]];
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username"));
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
+        ListView listView = (ListView) findViewById(R.id.mobile_list);
+        final int[] m = {0};
+        final String[] salt = new String[100];
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe").child("spices");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    salt[m[0]]=snapshot.child("salt").getValue().toString();
+                    m[0]++;
+                }
 
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                            childs[i[0]]=postSnapshot.getValue(addRecipe.class).toString();
-                            i[0]++;
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +63,6 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
             }
         });
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview,childs);
-        ListView listView = (ListView) findViewById(R.id.mobile_list);
-        listView.setAdapter(adapter);
-
-
-
     }
 
 
