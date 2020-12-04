@@ -31,7 +31,7 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe").child("spices");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
