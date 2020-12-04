@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,14 +40,13 @@ public class addRecipe<adapter> extends AppCompatActivity {
                 for (DataSnapshot dsp : snapshot.getChildren()) {
                     Userlist.add(String.valueOf(dsp.getValue()));
                 }
-                listView.setAdapter((ListAdapter) Userlist);
+                Toast.makeText(getApplicationContext(),Userlist.get(1),Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
 
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
