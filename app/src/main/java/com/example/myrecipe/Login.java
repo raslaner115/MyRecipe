@@ -35,12 +35,11 @@ public class Login extends AppCompatActivity {
         Button login=findViewById(R.id.login);
         TextView reg=findViewById(R.id.register);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(email.getText().toString());
-
 //__________________________________________________________________________________________________
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int count=0;
+                boolean isgood=true;
                 String emailS=email.getText().toString();
                 String passwordS=password.getText().toString();
 
@@ -50,22 +49,14 @@ public class Login extends AppCompatActivity {
                 else {
                     if (emailS.length()==0){
                         email.setError("email cannot be empty");
-                        count++;
+                        isgood=false;
                     }
 
                     if (passwordS.length()==0){
                         password.setError("password cannot be empty");
-                        count++;
+                        isgood=false;
                     }
-                    if (count==0){
-                        if (emailS.equals("admin") && passwordS.equals("R")){
-                            Intent intent=new Intent(Login.this, Main.class);
-                            intent.putExtra("email","admin@admin.admin");
-                            intent.putExtra("name","raslan");
-                            intent.putExtra("username","admin");
-                            startActivity(intent);
-                        }
-                        else {
+                    if (isgood){
                             Query checkUser = (reference.orderByChild("username").equalTo(emailS));
                             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -130,7 +121,7 @@ public class Login extends AppCompatActivity {
                                 public void onCancelled(@NonNull DatabaseError error) {
                                 }
                             });
-                        }}}}});
+                        }}}});
 //__________________________________________________________________________________________________
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,36 +142,6 @@ public class Login extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected(); }
-//__________________________________________________________________________________________________
-    public String EMAIL_USER(String eu){
-        char[] EU=eu.toCharArray();
-        boolean JUser=false;
-        char[] collector=new char[EU.length];
-        for (int i=0;i< EU.length;i++){
-            if (JUser){
-                collector[i]=EU[i];
-            }
-            if (EU[i]==':'){
-                JUser=true;
-            }
-        }
-        return collector.toString();
-    }
-//__________________________________________________________________________________________________
-    public String USER_EMAIL(String eu){
-        char[] EU=eu.toCharArray();
-        boolean JUser=true;
-        char[] collector=new char[EU.length];
-        for (int i=0;i< EU.length;i++){
-            if (EU[i]==':'){
-                JUser=false;
-            }
-            if (JUser){
-                collector[i]=EU[i];
-            }
-        }
-        return collector.toString();
-    }
 //__________________________________________________________________________________________________
     public void onBackPressed() {
         System.exit(1);
