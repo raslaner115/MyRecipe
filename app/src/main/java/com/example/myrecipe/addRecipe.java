@@ -35,7 +35,7 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
         Query checkmail = ref.orderByChild("salt");
         String[] names=new String[100];
-        names[0]="sABCeABCxABC";
+        names[0]="sABCeABCxABLC";
         final int[] x={0};
         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
