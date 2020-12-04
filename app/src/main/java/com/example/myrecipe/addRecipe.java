@@ -3,6 +3,7 @@ package com.example.myrecipe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,8 +33,10 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
 
-
         Query checkmail = ref.orderByChild("salt");
+        String[] names=new String[100];
+        names[0]="sABCeABCxABC";
+        final int[] x={0};
         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -43,16 +46,19 @@ public class addRecipe<adapter> extends AppCompatActivity {
 
                 for (DataSnapshot child : snapshot.getChildren()) {
                     dataKeys =child.getKey();
+                    names[x[0]]=dataKeys;
+                    x[0]++;
                     Userlist.add(dataKeys);
                 }
+                String[] array = Userlist.toArray(new String[0]);
+
                 Toast.makeText(getApplicationContext(),Userlist.get(1),Toast.LENGTH_LONG).show();
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,names);
+        listView.setAdapter(arrayAdapter);
 
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
