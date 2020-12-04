@@ -192,17 +192,4 @@ public class addP extends AppCompatActivity {
                 });
     }
 
-    public String DotToPlus(StringBuilder email){
-
-        String Semail=email.toString();
-        char[] CSemail=Semail.toCharArray();
-
-        for (int i=0;i<CSemail.length;i++){
-            if (CSemail[i]=='.'){
-                email.setCharAt(i,'+');
-            }
-        }
-        return email.toString();
-    }
-
 }
