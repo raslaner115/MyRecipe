@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class addRecipe<adapter> extends AppCompatActivity {
-
+    private ArrayList<String> MyRecipeList = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,29 +34,28 @@ public class addRecipe<adapter> extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
 
         Query checkmail = ref.orderByChild("salt");
-        Toast.makeText(getApplicationContext(),checkmail.toString(),Toast.LENGTH_LONG).show();
-
         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String key = snapshot.getKey();
                 String dataKeys="";
-                ArrayList<String> Userlist = new ArrayList<String>();
+
 
                 for (DataSnapshot child : snapshot.getChildren()) {
                     dataKeys =child.getKey();
-
-                    Userlist.add(dataKeys);
+                    MyRecipeList.add(dataKeys);
                 }
-                String[] array = Userlist.toArray(new String[0]);
-
-                Toast.makeText(getApplicationContext(),Userlist.get(1),Toast.LENGTH_LONG).show();
+                int x=0;
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Toast.makeText(getApplicationContext(),MyRecipeList.get(x),Toast.LENGTH_LONG).show();
+                    x++;
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });
-
-
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,MyRecipeList);
+        listView.setAdapter(adapter);
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
