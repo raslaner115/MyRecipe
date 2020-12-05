@@ -89,9 +89,10 @@ public class addP extends AppCompatActivity {
                         myRefA.child(Rname.getText().toString()).child("Ingredients").child(plantName[i]).setValue((String) getIntent().getSerializableExtra(plantName[i]));
                     }
                     myRefU.child("my recipe").child(Rname.getText().toString()).child("kinds").setValue(kind.getSelectedItem().toString());
-                    myRefU.child("my recipe").child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());;
+                    myRefU.child("my recipe").child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());
+                    uploadpic((String)getIntent().getSerializableExtra("username"),Rname.getText().toString());
                     Intent intent = new Intent(addP.this, addRecipe.class);
-                    intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
+                    intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));e
                     startActivity(intent);
                  }
              }
