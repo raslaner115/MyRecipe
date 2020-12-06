@@ -67,13 +67,13 @@ public class addRecipe extends AppCompatActivity {
                 String key = snapshot.getKey();
                 String dataKeys="";
 
-                ArrayList<recipess> MyRecipeList = new ArrayList<>();
+                ArrayList<String> MyRecipeList = new ArrayList<>();
 
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
-                    MyRecipeList.add(new recipess(dataKeys, finalLocalFile));
+                    MyRecipeList.add(dataKeys);
                 }
-                listView.setAdapter(new ArrayAdapter<recipess>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
+                listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
@@ -82,7 +82,6 @@ public class addRecipe extends AppCompatActivity {
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intentt = new Intent(addRecipe.this, addP.class);
                 intentt.putExtra("email", (String) getIntent().getSerializableExtra("email"));
                 intentt.putExtra("username", (String) getIntent().getSerializableExtra("username"));

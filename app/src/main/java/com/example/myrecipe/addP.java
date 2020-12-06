@@ -92,7 +92,7 @@ public class addP extends AppCompatActivity {
                     myRefU.child("my recipe").child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());
                     uploadpic((String)getIntent().getSerializableExtra("username"),Rname.getText().toString());
                     Intent intent = new Intent(addP.this, addRecipe.class);
-                    intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));e
+                    intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
                     startActivity(intent);
                  }
              }
@@ -146,16 +146,14 @@ public class addP extends AppCompatActivity {
         Intent intent = new Intent(addP.this, addRecipe.class);
         intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
         startActivity(intent);    }
-//__________________________________________________________________________________________________
+//open galery_______________________________________________________________________________________
     private void SelectAPic() {
         Intent i=new Intent();
         i.setType("image/*");
         i.setAction(i.ACTION_GET_CONTENT);
         startActivityForResult(i,1);
-
     }
-
-//change the pic____________________________________________________________________________________
+    //change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -166,7 +164,7 @@ public class addP extends AppCompatActivity {
         }
     }
 
-//__________________________________________________________________________________________________
+//upload the pic to firebase storage________________________________________________________________
 
     private void uploadpic(String username,String Rname) {
 
