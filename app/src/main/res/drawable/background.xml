@@ -5,8 +5,6 @@
         android:type="radial"
         android:centerX="1%"
         android:centerY="100%"
-        android:gradientRadius="1000dp"
-
-        />
+        android:gradientRadius="1000dp" />
 
 </shape>
