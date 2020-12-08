@@ -143,42 +143,43 @@ public class register extends AppCompatActivity {
         startActivityForResult(i,1);
     }
 
-    //change the pic____________________________________________________________________________________
+//change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode==1&&resultCode==RESULT_OK &&data!=null &&data.getData()!=null){
             imageuri=data.getData();
-            Propic.setImageURI(imageuri);
+            if (imageuri != null) {
+                Propic.setImageURI(imageuri);
+            }
         }
     }
 
 //upload the pic to firebase storage________________________________________________________________
 
     private void uploadpic(String username) {
-
-        StorageReference riversRef = mStorageRef.child(username).child("profile img");
-        riversRef.putFile(imageuri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // make a massage in the bottom
-                        Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getApplicationContext(),"fail to upload the picture",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double proper =(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
-                    }
-                });
+        if (imageuri != null) {
+            StorageReference riversRef = mStorageRef.child(username).child("profile img");
+            riversRef.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // make a massage in the bottom
+                    Snackbar.make(findViewById(android.R.id.content), "image uploaded", Snackbar.LENGTH_LONG).show();
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(getApplicationContext(), "fail to upload the picture", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double proper = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                        }
+                    });
+        }
     }
 
 //helper funcntion check if the leatters in array ar1 in ar2________________________________________

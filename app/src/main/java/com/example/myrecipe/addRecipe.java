@@ -58,7 +58,6 @@ public class addRecipe extends AppCompatActivity {
             }
         });
 
-
         Query checkmail = ref.orderByChild("salt");
         File finalLocalFile = localFile;
         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,7 +72,7 @@ public class addRecipe extends AppCompatActivity {
                     dataKeys =child.getKey();
                     MyRecipeList.add(dataKeys);
                 }
-                listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
+                listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,R.layout.listdesign, MyRecipeList));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
