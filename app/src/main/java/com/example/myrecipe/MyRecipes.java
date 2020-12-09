@@ -42,8 +42,21 @@ public class MyRecipes extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String key = snapshot.getKey();
+                        String dataKeys="";
+
+
                         for (DataSnapshot child : snapshot.getChildren()){
-                            Toast.makeText(getApplicationContext(),child.toString(),Toast.LENGTH_SHORT).show();
+                            dataKeys =dataKeys+" " +child.getKey();
+                            if (child.getValue().toString().equals("true")){
+                                Toast.makeText(getApplicationContext(),child.toString(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_SHORT).show();
+
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(),"it's false",Toast.LENGTH_SHORT).show();
+
+                            }
                         }
                     }
 
