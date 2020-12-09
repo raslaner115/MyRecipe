@@ -1,10 +1,8 @@
 package com.example.myrecipe;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,45 +27,56 @@ public class MyRecipes extends AppCompatActivity {
         ImageView delete=findViewById(R.id.delete);
         ImageView edit=findViewById(R.id.edit);
 
-        TextView spice=findViewById(R.id.spice);
+        TextView spices=findViewById(R.id.spice);
         TextView Ingredients=findViewById(R.id.Ingredients);
         TextView recipeName=findViewById(R.id.recipeName);
-
         recipeName.setText((String)getIntent().getSerializableExtra("recipename"));
-        recipeIMG.setOnClickListener(new View.OnClickListener() {
+
+        //__________________________________________________________________________________________
+        Query getIngredients=ref.child("Ingredients");
+        getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
+
             @Override
-            public void onClick(View v) {
-                Query getIngredients=ref.child("Ingredients");
-                getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String key = snapshot.getKey();
-                        String dataKeys="";
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String key = snapshot.getKey();
+                String dataKeys="";
 
 
-                        for (DataSnapshot child : snapshot.getChildren()){
-                            dataKeys =dataKeys+" " +child.getKey();
-                            if (child.getValue().toString().equals("true")){
-                                Toast.makeText(getApplicationContext(),child.toString(),Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(),dataKeys,Toast.LENGTH_SHORT).show();
-
-                            }
-                            else {
-                                Toast.makeText(getApplicationContext(),"it's false",Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
+                for (DataSnapshot child : snapshot.getChildren()){
+                    if (child.getValue().toString().equals("true")){
+                        dataKeys =dataKeys+" " +child.getKey();
                     }
+                }
+                Ingredients.setText(dataKeys);
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
             }
         });
+        //__________________________________________________________________________________________
+        Query getSpices=ref.child("spices");
+        getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String key = snapshot.getKey();
+                String dataKeys="";
 
+
+                for (DataSnapshot child : snapshot.getChildren()){
+                    if (child.getValue().toString().equals("true")){
+                        dataKeys =dataKeys+" " +child.getKey();
+                    }
+                }
+                spices.setText(dataKeys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
