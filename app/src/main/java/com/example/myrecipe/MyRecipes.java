@@ -37,7 +37,7 @@ public class MyRecipes extends AppCompatActivity {
         recipeIMG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Query getIngredients=ref.orderByChild("Ingredients");
+                Query getIngredients=ref.child("Ingredients");
                 getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
 
                     @Override
