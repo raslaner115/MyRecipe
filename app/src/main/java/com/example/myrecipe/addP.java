@@ -55,7 +55,7 @@ public class addP extends AppCompatActivity {
         DatabaseReference myRefU = database.getReference((String)getIntent().getSerializableExtra("username"));
         DatabaseReference myRefA = database.getReference("all recipes");
 
-        String[] plantName={"rice","onion","carrot","potatoِ","Eggplant","zucchini","corn","Tomato"};
+        String[] plantName={"rice","onion","carrot","potato","Eggplant","zucchini","corn","Tomato"};
         String[] SpicesName={"salt","pepper","cinnamon","cloves","ginger","carom"};
 
         ArrayAdapter<CharSequence> kinds = ArrayAdapter.createFromResource(this,

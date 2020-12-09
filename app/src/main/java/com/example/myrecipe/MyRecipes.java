@@ -39,15 +39,14 @@ public class MyRecipes extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String key = snapshot.getKey();
-                String dataKeys="";
-
+                String Ingredient="";
 
                 for (DataSnapshot child : snapshot.getChildren()){
                     if (child.getValue().toString().equals("true")){
-                        dataKeys =dataKeys+" " +child.getKey();
+                        Ingredient =Ingredient+" " +child.getKey();
                     }
                 }
-                Ingredients.setText(dataKeys);
+                Ingredients.setText(Ingredient);
             }
 
             @Override
@@ -59,17 +58,16 @@ public class MyRecipes extends AppCompatActivity {
         Query getSpices=ref.child("spices");
         getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String key = snapshot.getKey();
-                String dataKeys="";
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                String key = snapshotS.getKey();
+                String spice="";
 
-
-                for (DataSnapshot child : snapshot.getChildren()){
-                    if (child.getValue().toString().equals("true")){
-                        dataKeys =dataKeys+" " +child.getKey();
+                for (DataSnapshot childS : snapshotS.getChildren()){
+                    if (childS.getValue().toString().equals("true")){
+                        spice =spice+" " +childS.getKey();
                     }
                 }
-                spices.setText(dataKeys);
+                spices.setText(spice);
             }
 
             @Override
