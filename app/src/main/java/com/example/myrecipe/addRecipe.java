@@ -3,9 +3,11 @@ package com.example.myrecipe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -75,12 +77,17 @@ public class addRecipe extends AppCompatActivity {
                 }
 
                 listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });
-
-
 
         addB.setOnClickListener(new View.OnClickListener() {
             @Override
