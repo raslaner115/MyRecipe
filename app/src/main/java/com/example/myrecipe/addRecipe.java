@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +45,7 @@ public class addRecipe extends AppCompatActivity {
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
                     MyRecipeList.add(dataKeys);
-                }
+            }
 
                 listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
 
@@ -56,7 +55,6 @@ public class addRecipe extends AppCompatActivity {
                         in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         in.putExtra("recipename",  ((TextView) view).getText().toString());
                         startActivity(in);
-                        Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
