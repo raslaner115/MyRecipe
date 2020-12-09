@@ -77,12 +77,7 @@ public class addRecipe extends AppCompatActivity {
 
                 listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.activity_list_item,MyRecipeList));
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        // When clicked, show a toast with the TextView text or do whatever you need.
-                        Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
