@@ -3,11 +3,9 @@ package com.example.myrecipe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,14 +68,13 @@ public class addRecipe extends AppCompatActivity {
 
                 ArrayList<String> MyRecipeList = new ArrayList<>();
 
+
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
                     MyRecipeList.add(dataKeys);
                 }
 
-                listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.activity_list_item,MyRecipeList));
-
-
+                listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
