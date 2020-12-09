@@ -29,6 +29,8 @@ public class MyRecipes extends AppCompatActivity {
 
         TextView spices=findViewById(R.id.spice);
         TextView Ingredients=findViewById(R.id.Ingredients);
+        TextView kind=findViewById(R.id.kind);
+        TextView country=findViewById(R.id.country);
         TextView recipeName=findViewById(R.id.recipeName);
         recipeName.setText((String)getIntent().getSerializableExtra("recipename"));
 
@@ -56,7 +58,7 @@ public class MyRecipes extends AppCompatActivity {
         });
         //__________________________________________________________________________________________
         Query getSpices=ref.child("spices");
-        getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
+        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
                 String key = snapshotS.getKey();
@@ -75,7 +77,32 @@ public class MyRecipes extends AppCompatActivity {
 
             }
         });
+        //__________________________________________________________________________________________
+        Query getCountry=ref.child("country");
+        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                country.setText(snapshotS.toString());
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //__________________________________________________________________________________________
+        Query getKind=ref.child("kinds");
+        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                kind.setText(snapshotS.toString());
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }
