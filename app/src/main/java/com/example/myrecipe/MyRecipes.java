@@ -79,7 +79,7 @@ public class MyRecipes extends AppCompatActivity {
         });
         //__________________________________________________________________________________________
         Query getCountry=ref.child("country");
-        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
+        getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
                 country.setText(snapshotS.toString());
@@ -92,7 +92,7 @@ public class MyRecipes extends AppCompatActivity {
         });
         //__________________________________________________________________________________________
         Query getKind=ref.child("kinds");
-        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
+        getKind.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
                 kind.setText(snapshotS.toString());
