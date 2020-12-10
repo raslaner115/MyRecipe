@@ -81,12 +81,10 @@ public class MyRecipes extends AppCompatActivity {
         getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                country.setText(snapshotS.getValue().toString());
+                country.setText(snapshotS.getChildren().toString());
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
         //__________________________________________________________________________________________
         Query getKind=ref.child("kinds");
