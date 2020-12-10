@@ -166,8 +166,7 @@ public class register extends AppCompatActivity {
                     // make a massage in the bottom
                     Snackbar.make(findViewById(android.R.id.content), "image uploaded", Snackbar.LENGTH_LONG).show();
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
+            }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             Toast.makeText(getApplicationContext(), "fail to upload the picture", Toast.LENGTH_SHORT).show();

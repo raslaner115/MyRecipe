@@ -29,7 +29,7 @@ public class addRecipe extends AppCompatActivity {
 
         ImageView addB=findViewById(R.id.addB);
 
-        ListView listView = (ListView) findViewById(R.id.mobile_list);
+        ListView listView =findViewById(R.id.list);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
 

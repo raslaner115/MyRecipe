@@ -26,7 +26,6 @@ public class MyRecipes extends AppCompatActivity {
         ImageView recipeIMG=findViewById(R.id.recipeIMG);
         ImageView delete=findViewById(R.id.delete);
         ImageView edit=findViewById(R.id.edit);
-
         TextView spices=findViewById(R.id.spice);
         TextView Ingredients=findViewById(R.id.Ingredients);
         TextView kind=findViewById(R.id.kind);
@@ -82,8 +81,7 @@ public class MyRecipes extends AppCompatActivity {
         getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                country.setText(snapshotS.toString());
-
+                country.setText(snapshotS.getValue().toString());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -95,8 +93,7 @@ public class MyRecipes extends AppCompatActivity {
         getKind.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                kind.setText(snapshotS.toString());
-
+                kind.setText(snapshotS.getValue().toString());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

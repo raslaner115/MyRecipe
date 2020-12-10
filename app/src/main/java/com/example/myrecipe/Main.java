@@ -24,7 +24,7 @@ public class Main extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        Toast.makeText(getApplicationContext(),"home", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"you at hommmmmme", Toast.LENGTH_LONG).show();
                         return true;
 
                     case R.id.profile:
@@ -36,22 +36,34 @@ public class Main extends AppCompatActivity {
                         return true;
 
                     case R.id.favorite:
-                        Toast.makeText(getApplicationContext(),"favorite", Toast.LENGTH_LONG).show();
-                        return true;
-
-                    case R.id.food:
-                        Toast.makeText(getApplicationContext(),"food", Toast.LENGTH_LONG).show();
-                        return true;
-
-                    case R.id.drink:
-                        Toast.makeText(getApplicationContext(),"drink", Toast.LENGTH_LONG).show();
-                        return true;
-
-                    case R.id.add:
                         Intent intentt=new Intent(Main.this, addRecipe.class);
                         intentt.putExtra("email",(String)getIntent().getSerializableExtra("email"));
                         intentt.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                        intentt.putExtra("kind","favorite");
                         startActivity(intentt);
+                        return true;
+
+                    case R.id.food:
+                        Intent intent1=new Intent(Main.this, addRecipe.class);
+                        intent1.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                        intent1.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                        intent1.putExtra("kind","food");
+                        startActivity(intent1);
+                        return true;
+
+                    case R.id.drink:
+                        Intent inten=new Intent(Main.this, addRecipe.class);
+                        inten.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                        inten.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                        inten.putExtra("kind","drink");
+                        startActivity(inten);
+                        return true;
+
+                    case R.id.add:
+                        Intent inte=new Intent(Main.this, addRecipe.class);
+                        inte.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                        inte.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                        startActivity(inte);
                         return true;
 
                 }
