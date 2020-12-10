@@ -91,7 +91,7 @@ public class MyRecipes extends AppCompatActivity {
         getKind.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                kind.setText(snapshotS.getValue().toString());
+                kind.setText(snapshotS.getChildren().toString());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
