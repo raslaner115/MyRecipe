@@ -44,7 +44,7 @@ public class Main extends AppCompatActivity {
                         return true;
 
                     case R.id.food:
-                        Intent intent1=new Intent(Main.this, addRecipe.class);
+                        Intent intent1=new Intent(Main.this, kindfilter.class);
                         intent1.putExtra("email",(String)getIntent().getSerializableExtra("email"));
                         intent1.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         intent1.putExtra("kind","food");
@@ -52,7 +52,7 @@ public class Main extends AppCompatActivity {
                         return true;
 
                     case R.id.drink:
-                        Intent inten=new Intent(Main.this, addRecipe.class);
+                        Intent inten=new Intent(Main.this, kindfilter.class);
                         inten.putExtra("email",(String)getIntent().getSerializableExtra("email"));
                         inten.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         inten.putExtra("kind","drink");
