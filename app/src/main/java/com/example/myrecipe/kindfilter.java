@@ -31,20 +31,19 @@ public class kindfilter extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("all recipes");
 
-        Query kinds = ref.child("kinds");
+        Query kinds = ref.orderByChild("kinds");
         kinds.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String key = snapshot.getKey();
                 String dataKeys="";
-
                 ArrayList<String> MyRecipeList = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
                     Toast.makeText(getApplicationContext(),child.child(dataKeys).child("kinds").getValue().toString(),Toast.LENGTH_SHORT).show();
                     if (child.child(dataKeys).child("kinds").getValue().toString().equals((String)getIntent().getSerializableExtra("kind"))){
                         MyRecipeList.add(dataKeys);
-                    }                }
+                    }
+                }
 
                 listView.setAdapter(new ArrayAdapter<String>(kindfilter.this,android.R.layout.simple_list_item_1, MyRecipeList));
 
