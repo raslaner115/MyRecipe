@@ -81,7 +81,7 @@ public class MyRecipes extends AppCompatActivity {
         getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                country.setText(snapshotS.getChildren().toString());
+                country.setText(snapshotS.getValue().toString());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
@@ -91,12 +91,10 @@ public class MyRecipes extends AppCompatActivity {
         getKind.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                kind.setText(snapshotS.getChildren().toString());
+                kind.setText(snapshotS.getValue().toString());
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
 
     }

@@ -41,7 +41,7 @@ public class kindfilter extends AppCompatActivity {
 
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
-                    if (snapshot.child(dataKeys).child("kind").getValue().toString().equals((String)getIntent().getSerializableExtra("kind")))
+                    if (child.child(dataKeys).child("kind").getValue().toString().equals((String)getIntent().getSerializableExtra("kind")))
                     MyRecipeList.add(dataKeys);
                 }
 
