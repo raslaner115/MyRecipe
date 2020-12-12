@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class kindfilter extends AppCompatActivity {
                 ArrayList<String> MyRecipeList = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()){
                     dataKeys =child.getKey();
+                    Toast.makeText(getApplicationContext(),child.child(dataKeys).child("kinds").getValue().toString(),Toast.LENGTH_SHORT).show();
                     if (child.child(dataKeys).child("kinds").getValue().toString().equals((String)getIntent().getSerializableExtra("kind"))){
                         MyRecipeList.add(dataKeys);
                     }                }
