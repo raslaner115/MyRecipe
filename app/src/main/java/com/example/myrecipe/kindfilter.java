@@ -30,8 +30,8 @@ public class kindfilter extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("all recipes");
 
-        Query checkmail = ref.orderByChild("salt");
-        checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
+        Query kinds = ref.orderByChild("kinds");
+        kinds.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String key = snapshot.getKey();

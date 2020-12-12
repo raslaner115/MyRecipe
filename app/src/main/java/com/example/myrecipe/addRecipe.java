@@ -33,8 +33,8 @@ public class addRecipe extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
 
-        Query checkmail = ref.orderByChild("salt");
-        checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
+        Query aaaa = ref.orderByChild("salt");
+        aaaa.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String key = snapshot.getKey();
