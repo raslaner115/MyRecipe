@@ -86,9 +86,7 @@ public class MyRecipes extends AppCompatActivity {
 
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
         //__________________________________________________________________________________________
         Query getKind=ref.child("kinds");
