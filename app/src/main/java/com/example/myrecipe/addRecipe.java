@@ -48,7 +48,6 @@ public class addRecipe extends AppCompatActivity {
             }
 
                 listView.setAdapter(new ArrayAdapter<String>(addRecipe.this,android.R.layout.simple_list_item_1, MyRecipeList));
-
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent in=new Intent(addRecipe.this,MyRecipes.class);
@@ -57,8 +56,8 @@ public class addRecipe extends AppCompatActivity {
                         startActivity(in);
                     }
                 });
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });

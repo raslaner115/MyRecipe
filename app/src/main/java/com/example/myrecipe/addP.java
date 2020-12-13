@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -46,7 +45,6 @@ public class addP extends AppCompatActivity {
         Spinner kind =findViewById(R.id.kind);
         Spinner country =findViewById(R.id.country);
 
-        mStorageRef= FirebaseStorage.getInstance().getReference();
 
         EditText Rname=findViewById(R.id.name);
         TextView Ingredient=findViewById(R.id.Ingredients);
@@ -101,6 +99,8 @@ public class addP extends AppCompatActivity {
                  }
              }
         });
+
+
         Ingredient.setOnClickListener(v -> {
 
             Intent intent = new Intent(addP.this, Ingredients.class);
@@ -116,6 +116,7 @@ public class addP extends AppCompatActivity {
 
 
         });
+
         Spice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,28 +167,30 @@ public class addP extends AppCompatActivity {
     }
 
 //upload the pic to firebase storage________________________________________________________________
-    private void uploadpic(String username,String RName) {
-        if (imageuri != null) {
-            StorageReference riversRef = mStorageRef.child(username).child("my recipe").child(RName);;
-            riversRef.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // make a massage in the bottom
-                    Snackbar.make(findViewById(android.R.id.content), "image uploaded", Snackbar.LENGTH_LONG).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(getApplicationContext(), "fail to upload the picture", Toast.LENGTH_SHORT).show();
-                }
-            })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                            double proper = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        }
-                    });
-        }
+
+    private void uploadpic(String username,String Rname) {
+
+        StorageReference riversRef = mStorageRef.child(username).child("my recipe").child(Rname);
+        riversRef.putFile(imageuri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // make a massage in the bottom
+                        Snackbar.make(findViewById(android.R.id.content),"image uploaded",Snackbar.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(getApplicationContext(),"fail to upload the picture",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        double proper =(100.00*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                    }
+                });
     }
 
 }
