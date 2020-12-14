@@ -21,7 +21,7 @@ public class MyRecipes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("all recipes");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(("all recipes")).child((String)getIntent().getSerializableExtra("recipename"));
 
         ImageView recipeIMG=findViewById(R.id.recipeIMG);
         ImageView delete=findViewById(R.id.delete);
@@ -36,86 +36,70 @@ public class MyRecipes extends AppCompatActivity {
 
         //__________________________________________________________________________________________
 
-        Query getnames=ref.orderByChild("kinds");
-        getnames.addListenerForSingleValueEvent(new ValueEventListener() {
+        Query getIngredients=ref.child("Ingredients");
+        getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String names="";
+                String Ingredient="";
                 for (DataSnapshot child : snapshot.getChildren()){
-                    names=child.getKey();
-                    Query getIngredients=ref.child(names).child("Ingredients");
-                    getIngredients.addListenerForSingleValueEvent(new ValueEventListener(){
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String Ingredient="";
-
-                            for (DataSnapshot child : snapshot.getChildren()){
-                                if (child.getValue().toString().equals("true")){
-                                    Ingredient =Ingredient+" " +child.getKey();
-                                }
-                            }
-                            Ingredients.setText(Ingredient);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    Query getSpices=ref.child(names).child("spices");
-                    getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                            String key = snapshotS.getKey();
-                            String spice="";
-
-                            for (DataSnapshot childS : snapshotS.getChildren()){
-                                if (childS.getValue().toString().equals("true")){
-                                    spice =spice+" " +childS.getKey();
-                                }
-                            }
-                            spices.setText(spice);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    //__________________________________________________________________________________________
-                    Query getCountry=ref.child(names).child("country");
-                    getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                            country.setText(snapshotS.getValue().toString());
-
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {}
-                    });
-                    //__________________________________________________________________________________________
-                    Query getKind=ref.child(names).child("kinds");
-                    getKind.addListenerForSingleValueEvent(new ValueEventListener(){
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshotS) {
-                            kind.setText(snapshotS.getValue().toString());
-
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
+                    if (child.getValue().toString().equals("true")){
+                        Ingredient =Ingredient+" " +child.getKey();
+                    }
                 }
+                Ingredients.setText(Ingredient);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
 
+        Query getSpices=ref.child("spices");
+        getSpices.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                String key = snapshotS.getKey();
+                String spice="";
+
+                for (DataSnapshot childS : snapshotS.getChildren()){
+                    if (childS.getValue().toString().equals("true")){
+                        spice =spice+" " +childS.getKey();
+                    }
+                }
+                spices.setText(spice);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //__________________________________________________________________________________________
+        Query getCountry=ref.child("country");
+        getCountry.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                country.setText(snapshotS.getValue().toString());
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+        //__________________________________________________________________________________________
+        Query getKind=ref.child("kinds");
+        getKind.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshotS) {
+                kind.setText(snapshotS.getValue().toString());
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
 
