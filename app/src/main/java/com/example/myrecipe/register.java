@@ -61,7 +61,8 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(!isConnected(this)){
-                    Toast.makeText(getApplicationContext(),"there is no internet connection" , Toast.LENGTH_LONG).show();
+                     Toast.makeText(getApplicationContext(), "there is no internet connection", Toast.LENGTH_LONG).show();
+
                 }
                 else {
                     String email2 = email.getText().toString();
@@ -69,9 +70,9 @@ public class register extends AppCompatActivity {
                     String password2 = password.getText().toString();
                     String username2 = username.getText().toString();
 
-                    char[] alphabet = "abcdefghijklmnopq rstuvwxyzا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
-                    char[] passwordC = "abcdefghijklmnopq rstuvwxyz1234567890!@#$%&".toCharArray();
-                    char[] userc = "abcdefghijklmnopq.rstuvwxyz1234567890_-".toCharArray();
+                    char[] alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZا أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي ة ء ئ ؤ ".toCharArray();
+                    char[] passwordC = ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#").toCharArray();
+                    char[] userc = "abcdefghijklmnopqrstuvwxyz1234567890_-.".toCharArray();
 
                     char[] user = username2.toCharArray();
                     char[] name = fname2.toCharArray();
@@ -80,10 +81,9 @@ public class register extends AppCompatActivity {
 
                      boolean Iswrong = true;
 
-
 //connect to the firebase___________________________________________________________________________
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(username2);
+
+                    DatabaseReference myRef =FirebaseDatabase.getInstance().getReference(username2);
 //check password___________________________________________________________________________________
                     if (password2.length()<8){
                         password.setError("invaild password");
@@ -142,7 +142,6 @@ public class register extends AppCompatActivity {
         i.setAction(i.ACTION_GET_CONTENT);
         startActivityForResult(i,1);
     }
-
 //change the pic____________________________________________________________________________________
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
