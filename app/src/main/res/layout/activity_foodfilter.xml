@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".foodfilter">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -15,5 +20,5 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp"></ListView>
-
+</ScrollView>
 </RelativeLayout>

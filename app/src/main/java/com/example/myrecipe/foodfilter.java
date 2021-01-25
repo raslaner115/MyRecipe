@@ -45,7 +45,7 @@ public class foodfilter extends AppCompatActivity {
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent in=new Intent(foodfilter.this,MyRecipes.class);
+                        Intent in=new Intent(foodfilter.this,PeopleRecipe.class);
                         in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         in.putExtra("recipename",  ((TextView) view).getText().toString());
                         startActivity(in);

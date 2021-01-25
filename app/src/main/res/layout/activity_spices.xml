@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Spices">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -355,6 +359,136 @@
             android:text="Button" />
     </TableRow>
     <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <SeekBar
+            android:id="@+id/seekwqw51feBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/but541ton49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <SeekBar
+            android:id="@+id/seegerefvrthffffkBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/buttovcfgn51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <SeekBar
+            android:id="@+id/seekwfcdertgvhtqwfeBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/butgytrfgton49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <SeekBar
+            android:id="@+id/seegereffffrdcgtfkBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/buttoertgn51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <SeekBar
+            android:id="@+id/seekwqwbnmkiuyfeBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/buttonergf49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <SeekBar
+            android:id="@+id/seegereffertyhjfffkBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/bumnbfdtton51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <SeekBar
+            android:id="@+id/seekwqwfergrgrgBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/brgrgrgutton49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <SeekBar
+            android:id="@+id/seegerefffrgrergffkBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/buttoergergegn51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <SeekBar
+            android:id="@+id/gegerg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/buttergergegon49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <SeekBar
+            android:id="@+id/seegerefffefrfffkBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/burgergrtton51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+    <TableRow
         android:layout_width="90dp"
         android:layout_height="75dp">
 
@@ -365,4 +499,5 @@
             android:background="@drawable/button"
             android:text="save" />
     </TableRow>
+    </ScrollView>
 </TableLayout>
