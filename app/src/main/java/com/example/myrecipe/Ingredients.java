@@ -51,7 +51,7 @@ public class Ingredients extends AppCompatActivity {
                 public void onClick(View v) {
                     if (!Isplant[ii]) {
                         Isplant[ii] = true;
-                        plant[ii].setBackgroundColor(Color.GREEN);
+                        plant[ii].setBackgroundColor(Color.YELLOW);
                     } else {
                         Isplant[ii] = false;
                         plant[ii].setBackgroundColor(Color.LTGRAY);
