@@ -73,6 +73,12 @@ public class Main extends AppCompatActivity {
                         startActivity(intee);
                         return true;
 
+                    case R.id.follow:
+                        Intent intee1=new Intent(Main.this, addRecipe.class);
+                        intee1.putExtra("email",(String)getIntent().getSerializableExtra("email"));
+                        intee1.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                        startActivity(intee1);
+                        return true;
                 }
                 return false;
             }

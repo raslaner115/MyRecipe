@@ -91,6 +91,7 @@ public class addP extends AppCompatActivity {
                     myRefU.child("my recipe").child(Rname.getText().toString()).child("kinds").setValue(kind.getSelectedItem().toString());
                     myRefU.child("my recipe").child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());
                     myRefA.child(Rname.getText().toString()).child("kinds").setValue(kind.getSelectedItem().toString());
+                    myRefA.child(Rname.getText().toString()).child("user").setValue((String)getIntent().getSerializableExtra("username"));
                     myRefA.child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());
 
                     Intent intent = new Intent(addP.this, addRecipe.class);

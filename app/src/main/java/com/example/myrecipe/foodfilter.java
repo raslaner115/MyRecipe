@@ -28,9 +28,9 @@ public class foodfilter extends AppCompatActivity {
         setContentView(R.layout.activity_foodfilter);
         ListView listView =findViewById(R.id.list);
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("all recipes");
+        DatabaseReference myref = FirebaseDatabase.getInstance().getReference().child("all recipes");
 
-        Query kinds = ref.orderByChild("kinds").equalTo("food");
+        Query kinds = myref.orderByChild("kinds").equalTo("food");
         kinds.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -44,7 +44,7 @@ public class foodfilter extends AppCompatActivity {
                 listView.setAdapter(new ArrayAdapter<String>(foodfilter.this,android.R.layout.simple_list_item_1, MyRecipeList));
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView parent, View view, int position, long id) {
                         Intent in=new Intent(foodfilter.this,MyRecipes.class);
                         in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         in.putExtra("recipename",  ((TextView) view).getText().toString());
