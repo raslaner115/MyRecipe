@@ -1,12 +1,11 @@
 package com.example.myrecipe;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,18 +14,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class MyRecipes extends AppCompatActivity {
+public class someone_recipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_recipes);
+        setContentView(R.layout.activity_someone_recipe);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(("all recipes")).child((String)getIntent().getSerializableExtra("recipename"));
 
         ImageView recipeIMG=findViewById(R.id.recipeIMG);
-        ImageView delete=findViewById(R.id.delete);
-        ImageView edit=findViewById(R.id.edit);
+        ImageView delete=findViewById(R.id.follow);
+        ImageView edit=findViewById(R.id.like);
 
         TextView spices=findViewById(R.id.spice);
         TextView Ingredients=findViewById(R.id.Ingredients);
@@ -34,8 +33,6 @@ public class MyRecipes extends AppCompatActivity {
         TextView country=findViewById(R.id.country);
         TextView recipeName=findViewById(R.id.recipeName);
         recipeName.setText((String)getIntent().getSerializableExtra("recipename"));
-
-        //__________________________________________________________________________________________
 
         //__________________________________________________________________________________________
 

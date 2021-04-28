@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,16 +46,28 @@ public class foodfilter extends AppCompatActivity {
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView parent, View view, int position, long id) {
-                        Intent in=new Intent(foodfilter.this,MyRecipes.class);
-                        in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
-                        in.putExtra("recipename",  ((TextView) view).getText().toString());
-                        startActivity(in);
+                        if ((myref.child(((TextView) view).getText().toString()).child("user").).equals((String)getIntent().getSerializableExtra("username"))){
+                            Toast.makeText(getApplicationContext(),(myref.child(((TextView) view).getText().toString()).child("user").toString()),Toast.LENGTH_SHORT).show();
+                            Intent in=new Intent(foodfilter.this,MyRecipes.class);
+                            in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                            in.putExtra("recipename",  ((TextView) view).getText().toString());
+                            startActivity(in);
+
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),(myref.child(((TextView) view).getText().toString()).child("user").toString()),Toast.LENGTH_SHORT).show();
+                            Intent in=new Intent(foodfilter.this,someone_recipe.class);
+                            in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                            in.putExtra("recipename",  ((TextView) view).getText().toString());
+                            startActivity(in);
+                        }
                     }
                 });
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
-        });
 
-    }
-}
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        }}

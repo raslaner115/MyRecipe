@@ -9,9 +9,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".foodfilter"></activity>
+        <activity android:name=".someone_recipe"></activity>
+        <activity android:name=".foodfilter" />
         <activity android:name=".drinkfilter" />
-        <activity android:name=".kindfilter" />
         <activity android:name=".MyRecipes" />
         <activity android:name=".Spices" />
         <activity android:name=".Ingredients" />
