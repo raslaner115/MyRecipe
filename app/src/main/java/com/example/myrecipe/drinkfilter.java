@@ -1,8 +1,5 @@
 package com.example.myrecipe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +45,7 @@ public class drinkfilter extends AppCompatActivity {
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent in=new Intent(drinkfilter.this,MyRecipes.class);
+                        Intent in=new Intent(drinkfilter.this,PeopleRecipe.class);
                         in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
                         in.putExtra("recipename",  ((TextView) view).getText().toString());
                         startActivity(in);
