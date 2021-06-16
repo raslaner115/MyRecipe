@@ -9,7 +9,13 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".someone_recipe"></activity>
+        <activity
+            android:name=".MainDrawerActivity"
+            android:label="@string/title_activity_main_drawer"
+            android:theme="@style/NoActionBar"> </activity>
+        <activity android:name=".sweatfilter" />
+
+        <activity android:name=".someone_recipe" />
         <activity android:name=".foodfilter" />
         <activity android:name=".drinkfilter" />
         <activity android:name=".MyRecipes" />
@@ -28,11 +34,7 @@
         </activity>
         <activity android:name=".register" />
         <activity android:name=".Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -20,64 +20,44 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class drinkfilter extends AppCompatActivity {
+public class sweatfilter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drinkfilter);
+        setContentView(R.layout.activity_sweatfilter);
         ListView listView =findViewById(R.id.list);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("all recipes");
         DatabaseReference myref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe");
 
-        Query kinds = ref.orderByChild("kinds").equalTo("drinks");
+        Query kinds = ref.orderByChild("kinds").equalTo("sweat");
         kinds.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String dataKeys="";
                 ArrayList<String> MyRecipeList = new ArrayList<>();
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    dataKeys = child.getKey();
+                for (DataSnapshot child : snapshot.getChildren()){
+                    dataKeys =child.getKey();
                     MyRecipeList.add(dataKeys);
                 }
 
-                listView.setAdapter(new ArrayAdapter<String>(drinkfilter.this,android.R.layout.simple_list_item_1, MyRecipeList));
+                listView.setAdapter(new ArrayAdapter<String>(sweatfilter.this,android.R.layout.simple_list_item_1, MyRecipeList));
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        myref.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.hasChild(((TextView) view).getText().toString())){
-                                    Intent in=new Intent(drinkfilter.this,MyRecipes.class);
-                                    in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
-                                    in.putExtra("recipename",  ((TextView) view).getText().toString());
-                                    startActivity(in);
-                                }
-                                else {
-                                    Intent in=new Intent(drinkfilter.this,someone_recipe.class);
-                                    in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
-                                    in.putExtra("recipename",  ((TextView) view).getText().toString());
-                                    startActivity(in);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-
-
-
-
-
-
-
-
-
+                        if(snapshot.hasChild(((TextView) view).getText().toString())){
+                            Intent in=new Intent(sweatfilter.this,MyRecipes.class);
+                            in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                            in.putExtra("recipename",  ((TextView) view).getText().toString());
+                            startActivity(in);
+                        }
+                        else {
+                            Intent in=new Intent(sweatfilter.this,someone_recipe.class);
+                            in.putExtra("username",(String)getIntent().getSerializableExtra("username"));
+                            in.putExtra("recipename",  ((TextView) view).getText().toString());
+                            startActivity(in);
+                        }
                     }
                 });
             }

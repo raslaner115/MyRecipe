@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class MyRecipes extends AppCompatActivity {
 
@@ -21,8 +22,9 @@ public class MyRecipes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(("all recipes")).child((String)getIntent().getSerializableExtra("recipename"));
+        DatabaseReference myref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("my recipe").child((String)getIntent().getSerializableExtra("recipename"));
+        FirebaseStorage  mFirebaseStorage = FirebaseStorage.getInstance().getReference().getStorage();
 
         ImageView recipeIMG=findViewById(R.id.recipeIMG);
         ImageView delete=findViewById(R.id.delete);
@@ -36,7 +38,15 @@ public class MyRecipes extends AppCompatActivity {
         recipeName.setText((String)getIntent().getSerializableExtra("recipename"));
 
         //__________________________________________________________________________________________
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myref.removeValue();
+                ref.removeValue();
 
+                System.exit(1);
+            }
+        });
         //__________________________________________________________________________________________
 
         Query getIngredients=ref.child("Ingredients");

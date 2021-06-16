@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,10 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        FirebaseAuth  auth =FirebaseAuth.getInstance();
+        if (auth.getCurrentUser()!=null){
+
+        }
         EditText email=findViewById(R.id.email);
         EditText password=findViewById(R.id.editTextTextPassword);
         RelativeLayout relativeLayout=findViewById(R.id.relativelayout);;

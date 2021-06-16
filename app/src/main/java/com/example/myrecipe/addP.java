@@ -21,13 +21,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class addP extends AppCompatActivity {
     private ImageView pic;
-    private StorageReference mStorageRef;
+    private StorageReference mStorageRef= FirebaseStorage.getInstance().getReference();
     public Uri imageuri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class addP extends AppCompatActivity {
         setContentView(R.layout.activity_addp);
 
         TextView WS=findViewById(R.id.WSpices);
-         String WSpices = (String) getIntent().getSerializableExtra("spices");
+        String WSpices = (String) getIntent().getSerializableExtra("spices");
         WS.setText(WSpices);
 
         TextView Wp=findViewById(R.id.Ingredients2);
@@ -45,7 +46,7 @@ public class addP extends AppCompatActivity {
         Spinner kind =findViewById(R.id.kind);
         Spinner country =findViewById(R.id.country);
 
-
+        String username=(String)getIntent().getSerializableExtra("username");
         EditText Rname=findViewById(R.id.name);
         TextView Ingredient=findViewById(R.id.Ingredients);
         TextView Spice=findViewById(R.id.Spices);
@@ -93,12 +94,13 @@ public class addP extends AppCompatActivity {
                     myRefA.child(Rname.getText().toString()).child("kinds").setValue(kind.getSelectedItem().toString());
                     myRefA.child(Rname.getText().toString()).child("user").setValue((String)getIntent().getSerializableExtra("username"));
                     myRefA.child(Rname.getText().toString()).child("country").setValue(country.getSelectedItem().toString());
-
+                    String Rname1=Rname.getText().toString();
+                    uploadpic(username,Rname1);
                     Intent intent = new Intent(addP.this, addRecipe.class);
                     intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
                     startActivity(intent);
-                 }
-             }
+                }
+            }
         });
 
 
@@ -133,7 +135,7 @@ public class addP extends AppCompatActivity {
                 startActivity(intentt);
             }
         });
-         pic=findViewById(R.id.pic);       
+        pic=findViewById(R.id.pic);
 
         pic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +151,7 @@ public class addP extends AppCompatActivity {
         Intent intent = new Intent(addP.this, addRecipe.class);
         intent.putExtra("username", (String)getIntent().getSerializableExtra("username"));
         startActivity(intent);    }
-//open galery_______________________________________________________________________________________
+    //open galery_______________________________________________________________________________________
     private void SelectAPic() {
         Intent i=new Intent();
         i.setType("image/*");
@@ -170,7 +172,6 @@ public class addP extends AppCompatActivity {
 //upload the pic to firebase storage________________________________________________________________
 
     private void uploadpic(String username,String Rname) {
-
         StorageReference riversRef = mStorageRef.child(username).child("my recipe").child(Rname);
         riversRef.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
