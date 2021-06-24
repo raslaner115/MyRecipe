@@ -73,18 +73,4 @@
         app:srcCompat="@drawable/delete"
         tools:ignore="VectorDrawableCompat" />
 
-    <ImageView
-        android:id="@+id/edit"
-        android:layout_width="71dp"
-        android:layout_height="68dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
-        android:contentDescription="TODO"
-        app:srcCompat="@drawable/edit"
-        tools:ignore="VectorDrawableCompat" />
-
 </RelativeLayout>
