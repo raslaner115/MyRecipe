@@ -1,11 +1,13 @@
 package com.example.myrecipe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,10 +24,11 @@ public class someone_recipe extends AppCompatActivity {
         setContentView(R.layout.activity_someone_recipe);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(("all recipes")).child((String)getIntent().getSerializableExtra("recipename"));
+        DatabaseReference myref = FirebaseDatabase.getInstance().getReference().child((String)getIntent().getSerializableExtra("username ")).child(("my recipe")).child("favorite");
 
         ImageView recipeIMG=findViewById(R.id.recipeIMG);
-        ImageView delete=findViewById(R.id.follow);
-        ImageView edit=findViewById(R.id.like);
+        ImageView follow=findViewById(R.id.follow);
+        ImageView like=findViewById(R.id.like);
 
         TextView spices=findViewById(R.id.spice);
         TextView Ingredients=findViewById(R.id.Ingredients);
@@ -102,7 +105,24 @@ public class someone_recipe extends AppCompatActivity {
         });
 
 
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (like.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.loke).getConstantState()){
+                    like.setImageResource(R.drawable.likeunlike);
+                    Toast.makeText(getApplicationContext(), "add to faviorty", Toast.LENGTH_SHORT).show();
+                    myref.child((String)getIntent().getSerializableExtra("recipename"));
 
+                }
+                if (like.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.likeunlike).getConstantState()){
+                    like.setImageResource(R.drawable.loke);
+                    Toast.makeText(getApplicationContext(), "remove from faviorty", Toast.LENGTH_SHORT).show();
+                    myref.child((String)getIntent().getSerializableExtra("recipename")).removeValue();
+
+
+                }
+            }
+        });
 
         //__________________________________________________________________________________________
 
