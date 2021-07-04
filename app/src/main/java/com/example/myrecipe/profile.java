@@ -18,7 +18,7 @@ public class profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         FirebaseStorage  mFirebaseStorage = FirebaseStorage.getInstance().getReference().getStorage();
-        StorageReference desertRef = FirebaseStorage.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("profile img");
+        StorageReference desertRef = FirebaseStorage.getInstance().getReference().child((String)getIntent().getSerializableExtra("username")).child("profile img4");
         StorageReference photoRef = mFirebaseStorage.getReferenceFromUrl(String.valueOf(desertRef));
 
         TextView email2=findViewById(R.id.email2);
